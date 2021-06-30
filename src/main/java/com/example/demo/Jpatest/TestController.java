@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Jpatest.domain.Test;
+import com.example.demo.Jpatest.repository.TestRepository;
 @RestController
 public class TestController {
 
