@@ -1,5 +1,12 @@
 spring:
- mvc:
-  view:
-   prefix : /WEB-INF/jsp/
-   suffix : .jsp
+  mvc:
+    view:
+     prefix : /WEB-INF/jsp/
+     suffix : .jsp
+
+  datasource:
+    url : jdbc:mysql://192.168.1.161:3306/park?autoReconnect=true
+    username : root
+    password : root
+    driver-class-name : com.mysql.cj.jdbc.Driver
+ 
