@@ -1,5 +1,12 @@
 spring:
- mvc:
-  view:
-   prefix : /WEB-INF/jsp/
-   suffix : .jsp
+  mvc:
+    view:
+     prefix : /WEB-INF/jsp/
+     suffix : .jsp
+
+  datasource:
+    url : jdbc:log4jdbc:mariadb://192.168.1.161:3306/park?autoReconnect=true&characterencoding=UTF-8
+    username : root
+    password : root
+    driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+ 

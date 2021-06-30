@@ -4,7 +4,6 @@ plugins {
 	id 'java'
 	id 'war'
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-
 }
 
 group = 'com.example'
@@ -14,6 +13,7 @@ sourceCompatibility = '1.8'
 repositories {
 	mavenCentral()
 }
+
 
 dependencies {
 	implementation 'org.projectlombok:lombok'
@@ -33,34 +33,36 @@ dependencies {
 	
 	//query dsl
 	// https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
-	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '4.4.0'
+	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-apt'
 	
 	//jpa
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	
+	//log4jdbc
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
 }
 
-//querydsl
-def querydslDir = "src/main/generated"
-querydsl{
-	library = "com.qurydsl:querydsl-apt"
-	jpa=true
-	querydslSourcesDir = querydslDir
-}
-compileQuerydsl{ 
-	options.annotationProcessorPath = configurations.querydsl 
-} 
-configurations { 
-	querydsl.extendsFrom compileClasspath 
-} 
-sourceSets { 
-	main { 
-		java { 
-			srcDirs = ['src/main/java', querydslDir] 
-		} 
-	} 
-} //queryds
+//querydsl 추가 시작
+def querydslDir = "$buildDir/generated/querydsl"
 
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
 
 test {
 	useJUnitPlatform()
