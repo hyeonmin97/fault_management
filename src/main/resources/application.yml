@@ -9,5 +9,17 @@ spring:
     username : root
     password : root
     driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-  profiles:
-    include : oauth
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:      hibernate:
+        format_sql : true
+    show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          web : trace
+      zerock : debug
