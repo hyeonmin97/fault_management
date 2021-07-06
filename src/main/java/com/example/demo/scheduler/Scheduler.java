@@ -26,7 +26,7 @@ public class Scheduler {
 
         Map<String,Object> request = new HashMap<String,Object>();
         request.put("username", "slackbot");
-        request.put("text", "custom-slack-msg");
+        request.put("text", "hello world");
 
         HttpEntity<Map<String,Object>> entity = new HttpEntity<Map<String,Object>>(request);
                     
