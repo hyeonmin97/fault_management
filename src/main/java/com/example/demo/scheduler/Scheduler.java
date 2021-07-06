@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Scheduler {
 		
     @GetMapping("/send")
-    @Scheduled(cron = "30/30 * * * * ?") // 1분마다 확인 
+    @Scheduled(cron = "30/30 * * * * ?") // 1분마다 확인
     public void scronJobSch() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         Date now = new Date();
