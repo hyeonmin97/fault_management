@@ -36,7 +36,7 @@ public class Scheduler {
 
     }
 	
-    @Scheduled(cron = "0/10 * * * * ?") // 10초마다 확인 
+    @Scheduled(cron = "30/30 * * * * ?") // 30초마다 확인 
     public void scronJobSch() {
     	send();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
