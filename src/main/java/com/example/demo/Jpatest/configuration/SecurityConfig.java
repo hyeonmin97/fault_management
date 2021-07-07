@@ -32,9 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable(); 	
 		http.authorizeRequests()
-				.antMatchers("/login","/signup","/user","/sample/all").permitAll()
-				.antMatchers("/","/sample/member").hasRole("USER")
+				.antMatchers("/","/login","/signup","/sample/all").permitAll()
+				.antMatchers("/user").hasRole("USER")
 				.antMatchers("/admin").hasRole("ADMIN")
 				//.anyRequest().authenticated() // 나머지 요청은 어떤 권한이든 있어야 접근가능
 			 .and()
@@ -43,9 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			 	//.defaultSuccessUrl("/sample/all", true)//로그인 성공후 페이지
 			 .and()
 			 	.logout()
-			 		.logoutSuccessUrl("/")//로그아웃 성공시 메인페이지로 이동
-			 		.invalidateHttpSession(true);//세션 없애기
-		http.csrf().disable(); 	
+			 		.logoutSuccessUrl("/");//로그아웃 성공시 메인페이지로 이동
+			 		//.invalidateHttpSession(true);//세션 없애기
+		http.httpBasic();
+		
 	}
 
 	//로그인할때 필요한 정보

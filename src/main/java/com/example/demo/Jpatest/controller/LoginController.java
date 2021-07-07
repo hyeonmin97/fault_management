@@ -18,10 +18,16 @@ import lombok.extern.log4j.Log4j2;
 public class LoginController {
 	private final UserService userService;
 	
-	@GetMapping("/login")
+	@GetMapping("/")
+	public String index() {
+		return "/index";
+	}
+	
+	@GetMapping(path = "/login")
 	public String exLogin() {
 		return "/login";
 	}
+	
 	
 	@GetMapping("/signup")
     public String signupForm(Model model) {

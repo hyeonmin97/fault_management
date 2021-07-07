@@ -8,9 +8,7 @@
   <body>
     <div class="out">
       <div class="logo_form">
-          <div class="logo" >
-              <a href="index.jsp"><img src="file//logo.png" alt=""></a>
-          </div>
+          
           <div class="form">
           <%
 			String id = (String)session.getAttribute("MEMBERID");

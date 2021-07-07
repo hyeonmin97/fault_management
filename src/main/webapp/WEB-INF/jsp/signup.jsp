@@ -4,15 +4,13 @@
 <html>
 <head>
 <title>회원가입 페이지</title>
-<link rel="stylesheet" href="/resources/css/signUp.css">
+<link rel="stylesheet" href="resources/css/signUp.css">
 </head>
 <body>
-<form action="signup" method="post">
+<form action="/signup" method="post">
 
 	<div class="out">
-		<div class="logo" >
-              <a href="index.jsp"><img src="file//logo.png" alt=""></a>
-          </div>
+		
  		
 		<div class="input">
 			이메일&nbsp;&nbsp;&nbsp;
