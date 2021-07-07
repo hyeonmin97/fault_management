@@ -1,0 +1,41 @@
+@charset "UTF-8";
+.out{
+      text-align: center;
+      margin-top: 70px;
+    }
+    form div input, form div button{
+      font-size: 1rem;
+      font-weight: 70;
+      padding: 1em;
+      width: 300px;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgba(204,204,204,.75);
+
+      outline-width: 1px;
+      outline-color: rgba(255,0,0,0.50);
+
+
+    }
+    .logo_form{
+      display: inline-block;
+    }
+
+    button{
+      color: white;
+      background-color: red;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .input{
+    	margin-bottom:50px;
+   		text-align:center;
+   	 }
+ 	input{
+ 	margin-left:10px;
+ 	}
+ 	.logo{
+ 		margin-bottom:100px;
+ 	}
