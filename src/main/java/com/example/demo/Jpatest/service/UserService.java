@@ -1,4 +1,4 @@
-package com.example.demo.Jpatest.security.service;
+package com.example.demo.Jpatest.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,15 +8,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Jpatest.domain.UserInfo;
-import com.example.demo.Jpatest.repository.UserRepository;
-import com.example.demo.Jpatest.security.dto.UserInfoDto;
+import com.example.demo.Jpatest.dto.UserInfoDto;
+import com.example.demo.Jpatest.repository.UserInfoRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
-	private final UserRepository userRepository;
+	private final UserInfoRepository userRepository;
 	@Override
 	public UserInfo loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub

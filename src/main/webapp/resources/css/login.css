@@ -2,6 +2,7 @@
     .out{
       text-align: center;
       margin-top: 200px;
+      font-family: SF Pro KR,SF Pro Display,Apple SD Gothic Neo,Segoe UI,SegoeUI,Nanum Barun Gothic,\\B9D1\C740\ACE0\B515,malgun gothic,\\B3CB\C6C0,dotum,sans-serif;
     }
     form div input, form div button{
       font-size: 1rem;
@@ -24,7 +25,7 @@
       display: inline-block;
     }
 
-    button{
+    .loginButton{
       color: white;
       background-color: red;
       font-weight: bold;
@@ -54,3 +55,16 @@
     }
     a:link{color: gray;}
     a:visited{color:gray;}
+	
+	.oauthButton{
+		background-color:white;
+ 		
+    	height: 48px;
+    	align-items: center;
+    	font-size: 16px;
+    	font-weight: 400;
+    	
+    	width: 100%;
+		
+ 	}
+ 	

@@ -10,13 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.Jpatest.domain.UserInfo;
 import com.example.demo.Jpatest.domain.UserRole;
-import com.example.demo.Jpatest.repository.UserRepository;
+import com.example.demo.Jpatest.repository.UserInfoRepository;
 
 @SpringBootTest
 public class ClubMemberTest {
 
 	@Autowired
-	private UserRepository repository;
+	private UserInfoRepository repository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder; 

@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.demo.Jpatest.security.service.UserService;
+import com.example.demo.Jpatest.service.CustomOAuth2UserService;
+import com.example.demo.Jpatest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+	private final CustomOAuth2UserService customOAuth2UserService;
 	private final UserService userService;
 
 	@Bean
@@ -40,12 +41,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				//.anyRequest().authenticated() // 나머지 요청은 어떤 권한이든 있어야 접근가능
 			 .and()
 			 	.formLogin()
-			 	.loginPage("/login")
-			 	//.defaultSuccessUrl("/sample/all", true)//로그인 성공후 페이지
+			 	.loginPage("/userLogin")
+			 	.defaultSuccessUrl("/", true)//로그인 성공후 페이지
 			 .and()
 			 	.logout()
-			 		.logoutSuccessUrl("/");//로그아웃 성공시 메인페이지로 이동
-			 		//.invalidateHttpSession(true);//세션 없애기
+			 		.logoutUrl("/logout")
+			 		.logoutSuccessUrl("/")//로그아웃 성공시 메인페이지로 이동
+			 		.invalidateHttpSession(true)//세션 없애기
+			.and()
+				.oauth2Login()//oauth2login설정 시작
+					.userInfoEndpoint()//oauth2login성공 이후의 설정
+						.userService(customOAuth2UserService);///customOAuth2UserService에서 처리
+		
 		http.httpBasic();
 		
 	}

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Jpatest.security.dto.UserInfoDto;
-import com.example.demo.Jpatest.security.service.UserService;
+import com.example.demo.Jpatest.dto.UserInfoDto;
+import com.example.demo.Jpatest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,11 +23,25 @@ public class LoginController {
 		return "/index";
 	}
 	
-	@GetMapping(path = "/login")
+	
+	@GetMapping(path = "/userLogin")
 	public String exLogin() {
+		return "/userLogin";
+	}
+	
+	@PostMapping(path = "/userLogin")
+	public String login() {
 		return "/login";
 	}
 	
+	@GetMapping("/logout")
+	public String logout() {
+		//일반로그인일때
+		return "/logout";
+		
+		//구글로그인일때
+		 
+	}
 	
 	@GetMapping("/signup")
     public String signupForm(Model model) {
@@ -41,5 +55,15 @@ public class LoginController {
         userService.save(memberDto);
 
         return "redirect:/";
+    }
+    
+    @GetMapping("/user")
+    public String user() {
+    	return "user";
+    }
+    
+    @GetMapping("/amin")
+    public String admin() {
+    	return "admin";
     }
 }

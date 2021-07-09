@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-admin권한
-<a href = "/">홈</a>
+유저권한
+<a href="/">홈</a>
 </body>
 </html>

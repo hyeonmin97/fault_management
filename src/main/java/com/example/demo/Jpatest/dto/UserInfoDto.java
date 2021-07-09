@@ -1,4 +1,4 @@
-package com.example.demo.Jpatest.security.dto;
+package com.example.demo.Jpatest.dto;
 
 import lombok.Builder;
 import lombok.Getter;
