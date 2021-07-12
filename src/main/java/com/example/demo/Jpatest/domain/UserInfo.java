@@ -20,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserInfo extends BaseTimeEntity implements UserDetails{
@@ -46,9 +45,9 @@ public class UserInfo extends BaseTimeEntity implements UserDetails{
 	}
 	
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities(){//»ç¿ëÀÚ ±ÇÇÑ ÄÃ·¢¼Ç ÇüÅÂ·Î ¸®ÅÏ
+	public Collection<? extends GrantedAuthority> getAuthorities(){//ì‚¬ìš©ì ê¶Œí•œ ì»¬ë ‰ì…˜ í˜•íƒœë¡œ ë¦¬í„´
 		Set<GrantedAuthority> roles = new HashSet<>();
-		for(String role : auth.split(",")) {//¾îµå¹Î ±ÇÇÑ¿¡ À¯Àú±ÇÇÑ Æ÷ÇÔµÇ´Ï±ñ..
+		for(String role : auth.split(",")) {//ì–´ë“œë¯¼ ê¶Œí•œì—ëŠ” ìœ ì €ê¶Œí•œ í¬í•¨
 			roles.add(new SimpleGrantedAuthority(role));
 		}
 		return roles;

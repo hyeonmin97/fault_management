@@ -3,7 +3,7 @@ package com.example.demo.Jpatest.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller		// Controller ¾î³ëÅ×ÀÌ¼ÇÀ» ÅëÇØ ÀÌÁ¦ºÎÅÍ ÀÌ java ÆÄÀÏÀº Controller ¿ªÇÒÀ» ¼öÇàÇÑ´Ù.
+@Controller		// Controller ì–´ë…¸í…Œì´ì…˜ì„ í†µí•´ Controllerì—­í•  ìˆ˜í–‰
 public class MainController {
 	
 }

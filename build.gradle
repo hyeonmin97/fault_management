@@ -16,7 +16,10 @@ repositories {
 
 
 dependencies {
-	implementation 'org.projectlombok:lombok'
+	  // lombok
+  	annotationProcessor("org.projectlombok:lombok")
+ 	compileOnly("org.projectlombok:lombok")
+ 	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
@@ -73,4 +76,14 @@ compileQuerydsl {
 
 test {
 	useJUnitPlatform()
+}
+bootWar {
+    archiveBaseName = '-'
+    archiveFileName = '-.war'
+    archiveVersion = "0.0.0"
+}
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }

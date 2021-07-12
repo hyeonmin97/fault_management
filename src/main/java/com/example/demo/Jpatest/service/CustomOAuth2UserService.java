@@ -19,6 +19,7 @@ import com.example.demo.Jpatest.dto.SessionUser;
 import com.example.demo.Jpatest.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
@@ -41,11 +42,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		
 		
 		
-		//OAuth2UserService¸¦ ÅëÇØ °¡Á®¿Â OAuth2UserÀÇ attribute°ªÀ» ÀúÀåÇÒ Å¬·¡½º
+		//OAuth2UserServiceë¥¼ í†µí•´ ê°€ì ¸ì˜¨ OAuth2Userì˜ attributeê°’ì„ ì €ìž¥í•  í´ëž˜ìŠ¤
 		OAuthAttributes attributes = OAuthAttributes.
 				of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 		
-		//¼¼¼Ç¿¡ »ç¿ëÀÚ Á¤º¸¸¦ ÀúÀåÇÏ±âÀ§ÇÑ dtoÅ¬·¡½º
+		//ì„¸ì…˜ì— ì‚¬ìš©ìž ì •ë³´ë¥¼ ì €ìž¥í•˜ê¸° ìœ„í•œ dtoí´ëž˜ìŠ¤
 		User user = saveOrUpdate(attributes);
 		
 		httpSession.setAttribute("user", new SessionUser(user));
@@ -56,7 +57,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 					attributes.getNameAttributeKey());
 	}
 	
-	//Á¤º¸ ÀúÀåÇÏ°Å³ª ¾÷µ¥ÀÌÆ®
+	//ì •ë³´ ì €ìž¥í•˜ê±°ë‚˜ ì—…ë°ì´íŠ¸
 	private User saveOrUpdate(OAuthAttributes attributes) {
 		User user = userRepository.findByEmail(attributes.getEmail())
 				.map(entity -> entity.update(attributes.getName(), attributes.getPicture()))

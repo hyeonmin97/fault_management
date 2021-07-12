@@ -9,7 +9,7 @@ import com.example.demo.Jpatest.domain.oauth.User;
 import lombok.Getter;
 
 
-//Á÷·ÄÈ­¸¦ ±¸ÇöÇØ¾ßÇÑ´Ù´Â ¿À·ù°¡ ³ª±â¶§¹®¿¡ »ı¼ºÇÑ Å¬·¡½ºÀÓ
+//ì´ê±° ì•ˆì“°ê³  userinfdtoë¡œ ì„¸ì…˜ê´€ë¦¬í•˜ë©´ ì§ë ¬í™”í•˜ë¼ê³  ì˜¤ë¥˜ë‚¨
 @Getter
 public class SessionUser implements Serializable {
 	

@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "img/**");//¹«½ÃÇÒ Æú´õ
+		web.ignoring().antMatchers("/css/**", "/js/**", "img/**");//ë¬´ì‹œí•  íŒŒì¼
 	}
 
 	@Override
@@ -38,29 +38,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/","/login","/signup","/sample/all").permitAll()
 				.antMatchers("/user").hasRole("USER")
 				.antMatchers("/admin").hasRole("ADMIN")
-				//.anyRequest().authenticated() // ³ª¸ÓÁö ¿äÃ»Àº ¾î¶² ±ÇÇÑÀÌµç ÀÖ¾î¾ß Á¢±Ù°¡´É
+				//.anyRequest().authenticated() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ï¿½ï¿½
 			 .and()
 			 	.formLogin()
 			 	.loginPage("/userLogin")
-			 	.defaultSuccessUrl("/", true)//·Î±×ÀÎ ¼º°øÈÄ ÆäÀÌÁö
+			 	.defaultSuccessUrl("/", true)//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 .and()
 			 	.logout()
 			 		.logoutUrl("/logout")
-			 		.logoutSuccessUrl("/")//·Î±×¾Æ¿ô ¼º°ø½Ã ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿
-			 		.invalidateHttpSession(true)//¼¼¼Ç ¾ø¾Ö±â
+			 		.logoutSuccessUrl("/")//ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+			 		.invalidateHttpSession(true)//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
 			.and()
-				.oauth2Login()//oauth2login¼³Á¤ ½ÃÀÛ
-					.userInfoEndpoint()//oauth2login¼º°ø ÀÌÈÄÀÇ ¼³Á¤
-						.userService(customOAuth2UserService);///customOAuth2UserService¿¡¼­ Ã³¸®
+				.oauth2Login()//oauth2loginï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					.userInfoEndpoint()//oauth2loginï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+						.userService(customOAuth2UserService);///customOAuth2UserServiceï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		
 		http.httpBasic();
 		
 	}
 
-	//·Î±×ÀÎÇÒ¶§ ÇÊ¿äÇÑ Á¤º¸
+	//ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());//À¯ÀúÁ¤º¸¸¦ °¡Á®¿À´Â ¼­ºñ½º¸¦ userService·Î ÁöÁ¤, ÆĞ½º¿öµå ÀÎÄÚµå ÁöÁ¤
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º¸ï¿½ userServiceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ğ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	

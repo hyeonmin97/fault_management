@@ -28,7 +28,7 @@ public class OAuthAttributes {
 		this.picture = picture;
 	}
 
-	//OAuth2User¿¡¼­ ¹İÈ¯ÇÏ´Â Á¤º¸´Â MapÇüÅÂÀÌ±â¶§¹®¿¡ º¯È¯ ÇÊ¿ä
+	//OAuth2Userì—ì„œ ë°˜í™˜í•˜ëŠ” ì •ë³´ëŠ” Mapí˜•íƒœì´ê¸°ë•Œë¬¸ì— ë³€í™˜ í•„ìš”
 	public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 		return ofGoogle(userNameAttributeName, attributes);
 	}

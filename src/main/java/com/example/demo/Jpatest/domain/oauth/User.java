@@ -32,7 +32,7 @@ public class User extends BaseTimeEntity{
 	@Column
 	private String picture;
 	
-	@Enumerated(EnumType.STRING)//¹®ÀÚ¿­À¸·Î ÀúÀåµÇ°Ô
+	@Enumerated(EnumType.STRING)//ë¬¸ìì—´ìœ¼ë¡œ ì €ì¥ë˜ê²Œ
 	@Column
 	private UserRole role;
 	

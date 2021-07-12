@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 
 public enum UserRole {
-	USER("ROLE_USER", "ÀÏ¹İ »ç¿ëÀÚ"), 
-	ADMIN("ROLE_ADMIN", "°ü¸®ÀÚ");
+	USER("ROLE_USER", "ì¼ë°˜ ì‚¬ìš©ì"), 
+	ADMIN("ROLE_ADMIN", "ê´€ë¦¬ì");
 	
 	private String value;
 	private String title;

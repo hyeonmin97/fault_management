@@ -36,10 +36,9 @@ public class LoginController {
 	
 	@GetMapping("/logout")
 	public String logout() {
-		//ÀÏ¹İ·Î±×ÀÎÀÏ¶§
+		//ì¼ë°˜ ë¡œê·¸ì•„ì›ƒì¼ë•Œ
 		return "/logout";
-		
-		//±¸±Û·Î±×ÀÎÀÏ¶§
+	
 		 
 	}
 	

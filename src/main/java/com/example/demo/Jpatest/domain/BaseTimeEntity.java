@@ -12,16 +12,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
 
-@MappedSuperclass//»ó¼Ó¹ŞÀº jpa entity Å¬·¡½ºµéÀÌ ³¯Â¥µéµµ ÄÃ·³À¸·Î ÀÎ½ÄÇÏ°ÔÇÔ
+@MappedSuperclass//ìƒì†ë°›ì€ jpa entity í´ë˜ìŠ¤ë“¤ì´ ë‚ ì§œë“¤ë„ ì»¬ëŸ¼ìœ¼ë¡œ ì¸ì‹í•˜ê²Œ í•¨
 @EntityListeners(value = {AuditingEntityListener.class})
 @Getter
 public abstract class BaseTimeEntity {
 	
 	@CreatedDate
 	@Column(name = "creDate", updatable = false)
-	private LocalDateTime createdDate;//»ı¼º³¯Â¥
+	private LocalDateTime createdDate;//ìƒì„±ë‚ ì§œ
 	
 	@LastModifiedDate
 	@Column(name = "modDate")
-	private LocalDateTime modifiedDate;//¼öÁ¤³¯Â¥
+	private LocalDateTime modifiedDate;//ìˆ˜ì •ë‚ ì§œ
 }
