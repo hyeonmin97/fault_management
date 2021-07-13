@@ -12,7 +12,7 @@ import com.example.demo.Jpatest.domain.UserInfo;
 import com.example.demo.Jpatest.domain.UserRole;
 import com.example.demo.Jpatest.repository.UserInfoRepository;
 
-@SpringBootTest
+//@SpringBootTest
 public class ClubMemberTest {
 
 	@Autowired
