@@ -3,10 +3,40 @@ spring:
     view:
      prefix : /WEB-INF/jsp/
      suffix : .jsp
-
+     
+  profiles:
+    include: oauth
+    
   datasource:
     url : jdbc:log4jdbc:mariadb://192.168.1.161:3306/park?autoReconnect=true&characterencoding=UTF-8
     username : root
     password : root
     driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
- 
+  
+  jpa:
+    hibernate:
+      ddl-auto: create
+      #none: 아무것도 실행하지 않는다 (대부분의 DB에서 기본값이다)
+      #create-drop: SessionFactory가 시작될 때 drop및 생성을 실행하고, SessionFactory가 종료될 때 drop을 실행한다 (in-memory DB의 경우 기본값이다)
+      #create: SessionFactory가 시작될 때 데이터베이스 drop을 실행하고 생성된 DDL을 실행한다
+      #update: 변경된 스키마를 적용한다
+      #validate: 변경된 스키마가 있다면 변경점을 출력하고 애플리케이션을 종료한다
+    show_sql : true  
+    
+    properties:      hibernate:
+        '[format_sql]' : true
+  security :    
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id : 868530359006-bgoc8ps0dmtdaj35bb0cdprrisc1jc70.apps.googleusercontent.com
+            client-secret: OLnzw1W8yVYmpbLgmL-8kFdI
+            scope: profile,email
+    
+logging:
+  level:
+    '[org:hibernate.SQL]': debug #로그 ?값 표시
+    #'[org.springframework.web.client]': DEBUG
+    '[org.hibernate.type.descriptor.sql]': DEBUG #trace
+    #'[org.springframework]' : debug # 스프링 시큐리티 동작 확인

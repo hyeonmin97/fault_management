@@ -16,7 +16,10 @@ repositories {
 
 
 dependencies {
-	implementation 'org.projectlombok:lombok'
+	  // lombok
+  	annotationProcessor("org.projectlombok:lombok")
+ 	compileOnly("org.projectlombok:lombok")
+ 	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
@@ -42,9 +45,16 @@ dependencies {
 	//log4jdbc
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
+	// Oauth
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	//sequrity
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.5.1'
+	compile('org.springframework.boot:spring-boot-starter-oauth2-client');
 }
 
-//querydsl 추가 시작
+//querydsl
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
@@ -66,4 +76,14 @@ compileQuerydsl {
 
 test {
 	useJUnitPlatform()
+}
+bootWar {
+    archiveBaseName = '-'
+    archiveFileName = '-.war'
+    archiveVersion = "0.0.0"
+}
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
