@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Scheduler {
 		
     @GetMapping("/send")
-    @Scheduled(cron = "30/30 * * * * ?") // 1ºÐ¸¶´Ù È®ÀÎ
+    @Scheduled(cron = "30/30 * * * * ?") // 1ë¶„ë§ˆë‹¤ 
     public void scronJobSch() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         Date now = new Date();
@@ -36,10 +36,11 @@ public class Scheduler {
 
         HttpEntity<Map<String,Object>> entity = new HttpEntity<Map<String,Object>>(request);
                     
-        String url = "https://hooks.slack.com/services/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"; // »ç¿ëÇÒ ½½·¢ÀÇ Webhook URL ³Ö±â
-        //String url = "https://hooks.slack.com/services/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"; // »ç¿ëÇÒ ½½·¢ÀÇ Webhook URL ³Ö±â
+        String url = "https://hooks.slack.com/services/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"; // Webhook URL 
 
         restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
     }
     
 }
+
+
