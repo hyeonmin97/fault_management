@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Headquarters{
 	@EmbeddedId
 	private HeadquartersId headquatersId;
-
+	
 	@Builder
 	public Headquarters(HeadquartersId headquatersId) {
 		this.headquatersId = headquatersId;

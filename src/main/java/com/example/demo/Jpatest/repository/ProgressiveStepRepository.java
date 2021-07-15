@@ -1,11 +1,10 @@
 package com.example.demo.Jpatest.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Jpatest.domain.CenterList;
+import com.example.demo.Jpatest.domain.ProgressiveStep;
 
-public interface CenterListRepository extends JpaRepository<CenterList, Long> {
-	Optional<CenterList> findByCode(Long code);
+public interface ProgressiveStepRepository extends JpaRepository<ProgressiveStep, Integer>{
+
 }

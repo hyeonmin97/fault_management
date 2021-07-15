@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,14 +18,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+@EqualsAndHashCode
 //본부 테이블
 public class HeadquartersId implements Serializable{
 
-	@Column(length=10, name="HQ_Code")
+	@Column(length=10)
 	private String hqCode;
 	
 
-	@Column(length=10, name="Area_Code")
+	@Column(length=10)
 	private String areaCode;
 	
 	

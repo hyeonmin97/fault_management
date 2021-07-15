@@ -15,48 +15,48 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-@Check(constraints = "center_state in ('영업','폐업','휴업')")
+@Check(constraints = "state in ('영업','폐업','휴업')")
 public class CenterList extends BaseTimeEntity {
 	@Id
-	@Column(length=10)
+	@Column(length=10, name="code",insertable = false, updatable = false, nullable = false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long centerCode;
+	private Long code;
 	
 	
 	@Column(length=30)
-	private String centerName;
+	private String name;
 	
 	@Column(length=10)
-	private String centerPostalCode;
+	private String postalCode;
 	
 	
 	@Column(length=60)
-	private String centerAddress;
+	private String address;
 	
 	@Column(length=40)
-	private String centerDetailAddress;
+	private String detailAddress;
 	
 	
 	@Column(length=20)
-	private String centerPhoneNumber;
+	private String phoneNumber;
 	
 	@Column(length=20)
-	private String centerFaxNumber;
+	private String faxNumber;
 	
 	
 	@Column(length=10)
-	private String centerState;
+	private String state;
 
 	@Builder
-	public CenterList(String centerName, String centerPostalCode, String centerAddress,
-			String centerDetailAddress, String centerPhoneNumber, String centerFaxNumber, String centerState) {
-		this.centerName = centerName;
-		this.centerPostalCode = centerPostalCode;
-		this.centerAddress = centerAddress;
-		this.centerDetailAddress = centerDetailAddress;
-		this.centerPhoneNumber = centerPhoneNumber;
-		this.centerFaxNumber = centerFaxNumber;
-		this.centerState = centerState;
+	public CenterList(String name, String postalCode, String address, String detailAddress, String phoneNumber,
+			String faxNumber, String state) {
+		this.name = name;
+		this.postalCode = postalCode;
+		this.address = address;
+		this.detailAddress = detailAddress;
+		this.phoneNumber = phoneNumber;
+		this.faxNumber = faxNumber;
+		this.state = state;
 	}
 	
 	

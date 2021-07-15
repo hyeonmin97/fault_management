@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import com.example.demo.Jpatest.domain.CenterList;
 import com.example.demo.Jpatest.repository.CenterListRepository;
 
-//@SpringBootTest
+@SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)
 public class CenterListTest {
 	@Autowired
@@ -25,13 +25,13 @@ public class CenterListTest {
 	@Test
 	public void save() {
 		centerRepository.save(CenterList.builder()
-				.centerName("노원점")
-				.centerPostalCode("01678")
-				.centerAddress("서울시 노원구 한글비석로 479")
-				.centerDetailAddress("100동")
-				.centerPhoneNumber("029430000")
-				.centerFaxNumber("029341111")
-				.centerState("영업")
+				.name("노원점")
+				.postalCode("01678")
+				.address("서울시 노원구 한글비석로 479")
+				.detailAddress("100동")
+				.phoneNumber("029430000")
+				.faxNumber("029341111")
+				.state("영업")
 				.build());
 	}
 }
