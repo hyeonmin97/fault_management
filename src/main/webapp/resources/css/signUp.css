@@ -2,7 +2,17 @@
 	.out{
       text-align: center;
       margin-top: 70px;
-    }
+    }    
+    .head{
+		font-size: 60px; 
+		color:red;
+		font-weight: bold;
+	}
+	
+	.foot{
+		font-weight: bold;
+	}
+    
     form div input, form div button{
       font-size: 1rem;
       font-weight: 70;
@@ -33,4 +43,11 @@
  	input{
  	margin-left:10px;
  	}
+ 	
+ 	
+ 	div.foot{
+		margin-left: 400px;
+ 		margin-right: 400px;
+	
+	}
  
