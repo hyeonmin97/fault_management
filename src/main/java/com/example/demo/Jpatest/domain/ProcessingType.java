@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Getter;
@@ -23,10 +25,12 @@ public class ProcessingType extends BaseTimeEntity{
 	
 	//점포코드 외래키 연결
 	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_PROCESSINGTYPE_STORELIST"))
 	private StoreList store;
 	
 	//장애코드 외래키 연결
 	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_PROCESSINGTYPE_DEFECTTYPE"))
 	private DefectType defect;
 	
 	@Column(length = 60)
@@ -45,6 +49,7 @@ public class ProcessingType extends BaseTimeEntity{
 	
 	//엔지니어 외래키 연결
 	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_PROCESSINGTYPE_ENGINEERLIST"))
 	private EngineerList engineer;
 	
 	@Column
@@ -57,13 +62,14 @@ public class ProcessingType extends BaseTimeEntity{
 	
 	//진행단계번호 외래키 연결
 	@ManyToOne
-	private ProgressiveStep progressiveSteop;
+	@JoinColumn(foreignKey=@ForeignKey(name="FK_PROCESSINGTYPE_PROGRESSIVESTEP"))
+	private ProgressiveStep progressiveStep;
 	
 	@Column(length=20)
 	//처리방법
 	private String method;
 
 	@Column(length=1)
-	//처리방법
+	//예약점검 여부
 	private String inspectionStatus;
 }

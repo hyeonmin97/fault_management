@@ -2,6 +2,7 @@ package com.example.demo.Jpatest.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,7 +32,7 @@ public class EngineerList {
 	
 	//외래키 들어갈 부분
 	@ManyToOne
-	@JoinColumn(name = "centerCode")
+	@JoinColumn(name = "centerCode", foreignKey=@ForeignKey(name="FK_ENGINEERLIST_CENTERLIST"))
 	private CenterList centerList; //센터코드
 	
 	

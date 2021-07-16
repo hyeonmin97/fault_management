@@ -79,7 +79,7 @@ public class StoreList extends BaseTimeEntity{
 	 * centerCode;
 	 */
 	@ManyToOne(targetEntity = CenterList.class)
-	@JoinColumn(name="storeCode")//컬럼의 이름 설정하는거임;
+	@JoinColumn(name="centerCode", foreignKey=@ForeignKey(name="FK_STORELIST_CENTERLIST"))//컬럼의 이름 설정하는거임;
 	private CenterList centerList;
 	 
 	@Column(length = 60)
@@ -90,7 +90,6 @@ public class StoreList extends BaseTimeEntity{
 	public StoreList(String code, Headquarters headquatersId, String name, String postalCode, String address,
 			String detailAddress, String phoneNumber, String faxNumber, String dateOpen, String dateClose, String state,
 			CenterList centerList, String industry) {
-		super();
 		this.code = code;
 		this.headquatersId = headquatersId;
 		this.name = name;

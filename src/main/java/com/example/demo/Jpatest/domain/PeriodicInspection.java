@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -22,8 +23,8 @@ public class PeriodicInspection {
 
 	@MapsId
 	@OneToOne
-	@JoinColumn(name="storeCode")
-	private StoreList storeList;//점포리스트의 ip값
+	@JoinColumn(name="storeCode", foreignKey=@ForeignKey(name="FK_PERIODICINSPECTION_STORELIST"))
+	private StoreList storeList;//점포리스트의 id값
 
 	@Column
 	private LocalDateTime date;//정기점검일

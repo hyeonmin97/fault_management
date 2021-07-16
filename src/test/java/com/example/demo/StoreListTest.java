@@ -18,7 +18,7 @@ public class StoreListTest {
 	@Autowired
 	StoreListRepository storeRepository;
 	
-	HeadquartersId headId = new HeadquartersId("도봉", "상계2");
+	HeadquartersId headId = new HeadquartersId("노원", "상계2");
 	
 	@Autowired
 	CenterListRepository centerRepository;
