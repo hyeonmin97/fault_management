@@ -20,32 +20,32 @@ public class CenterList extends BaseTimeEntity {
 	@Id
 	@Column(length=10, name="code",insertable = false, updatable = false, nullable = false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long code;
+	private Long code;//센터 코드
 	
 	
 	@Column(length=30)
-	private String name;
+	private String name;//센터명
 	
 	@Column(length=10)
-	private String postalCode;
+	private String postalCode;//우편번호
 	
 	
 	@Column(length=60)
-	private String address;
+	private String address;//주소
 	
 	@Column(length=40)
-	private String detailAddress;
+	private String detailAddress;//상세주소
 	
 	
 	@Column(length=20)
-	private String phoneNumber;
+	private String phoneNumber;//전화번호
 	
 	@Column(length=20)
-	private String faxNumber;
+	private String faxNumber;//팩스번호
 	
 	
 	@Column(length=10)
-	private String state;
+	private String state;//상태
 
 	@Builder
 	public CenterList(String name, String postalCode, String address, String detailAddress, String phoneNumber,

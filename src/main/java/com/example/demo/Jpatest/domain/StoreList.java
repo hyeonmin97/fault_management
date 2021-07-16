@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class StoreList extends BaseTimeEntity{
 	@Id
 	@Column(length = 10)
-	private String code;
+	private String code;//점포리스트 일련번호
 	
 	//본부코드,지점코드 외래키
 	@ManyToOne
@@ -58,13 +58,13 @@ public class StoreList extends BaseTimeEntity{
 	private String faxNumber;
 	
 	@Column(length = 10)
-	private String dateOpen;
+	private String dateOpen;//배정일자
 	
 	@Column(length = 10)
-	private String dateClose;
+	private String dateClose;//처리일자
 	
 	@Column(length = 10)
-	private String state;
+	private String state;//정기점검 여부
 	
 	//센터코드 외래키
 	/*

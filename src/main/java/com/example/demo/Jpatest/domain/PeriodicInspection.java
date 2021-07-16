@@ -23,11 +23,11 @@ public class PeriodicInspection {
 	@MapsId
 	@OneToOne
 	@JoinColumn(name="storeCode")
-	private StoreList storeList;
+	private StoreList storeList;//점포리스트의 ip값
 
 	@Column
-	private LocalDateTime date;
+	private LocalDateTime date;//정기점검일
 	
 	@Column
-	private LocalDateTime nextDate;
+	private LocalDateTime nextDate;//다음 정기점검일
 }

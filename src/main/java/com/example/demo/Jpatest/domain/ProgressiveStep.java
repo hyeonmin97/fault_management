@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class ProgressiveStep {
 	@Id
 	@Column(length = 11)
-	private int number;
+	private int number;//진행번호
 	
 	@Column(length = 60)
-	private String content;
+	private String content;///진행내
 
 	@Builder
 	public ProgressiveStep(int number, String content) {

@@ -15,24 +15,24 @@ import lombok.NoArgsConstructor;
 public class EngineerList {
 	@Id
 	@Column(length = 10)
-	private String code;
+	private String code;//사원번호
 	
 	@Column(length=30)
-	private String name;
+	private String name;//이름
 	
 	@Column(length=11)
-	private int age;
+	private int age;//나이
 	
 	@Column(length=20)
-	private String phoneNumber;
+	private String phoneNumber;//전화번호
 	
 	@Column(length=10)
-	private String state;
+	private String state;//상태
 	
 	//외래키 들어갈 부분
 	@ManyToOne
 	@JoinColumn(name = "centerCode")
-	private CenterList centerList;
+	private CenterList centerList; //센터코드
 	
 	
 	@Column(length=10)

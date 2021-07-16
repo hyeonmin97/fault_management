@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 public class DefectType {//장애유형 테이블
 	@Id
 	@Column(length = 10)
-	private String code;
+	private String code;//장애코드
 	
 	@Column(length = 45)
-	private String largeCategory;
+	private String largeCategory;//대분류
 	
 	@Column(length = 45)
-	private String middleCategory;
+	private String middleCategory;//중븐류
 	
 	@Column(length = 45)
-	private String smallCategory;
+	private String smallCategory;//소분류
 
 	@Builder
 	public DefectType(String code, String largeCategory, String middleCategory, String smallCategory) {
