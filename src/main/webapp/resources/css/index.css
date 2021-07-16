@@ -1,0 +1,59 @@
+	div.ma{
+ 		margin-left: 350px;
+ 		margin-right: 350px;
+ 		background:#424242;
+ 		
+ 	}
+ 	
+ 	div.login{ 
+		border-top-left-radius: 5px;
+	 	border-bottom-left-radius: 5px; 
+	 	margin-right:80px; 
+	 	margin-bottom: 0px;
+	 	text-align: right; 
+	 } 
+	 div.logout{ 
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px; 
+		margin-left:0px;
+		margin-top: -30px;
+		text-align: right; 
+		} 
+ 	
+ 	#text button{
+		text-align: right;
+		border: 1px solid white; 
+		background-color: rgba(0,0,0,0); 
+		color: white; 
+		padding:5px;	
+	}
+
+	#text button:hover{ 
+	color:white; 
+	background-color: #FE2E2E; 
+	}
+	
+	div.btn1{
+		text-align: center;
+		margin: auto;
+		}
+	 div.btn2{ 
+		 text-align: center;
+		} 
+	#btn_group button{ 
+		text-align: center;
+		border: 1px solid white; 
+		background-color: rgba(0,0,0,0); 
+		color: white; 
+		padding: 5px;
+		}
+	#btn_group button:hover{ 
+		color:white; 
+		background-color: #FE2E2E; 
+		}
+		
+
+ 	
+
+
+

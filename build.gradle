@@ -16,13 +16,22 @@ repositories {
 
 
 dependencies {
+
+
+	//tiles 관련 라이브러리
+	implementation 'javax.servlet:jstl:1.2'
+	implementation 'org.apache.tiles:tiles-jsp:3.0.5'
+	implementation 'org.apache.tiles:tiles-servlet:3.0.5'
+	implementation 'org.apache.tiles:tiles-core:3.0.5'
+	implementation 'org.apache.tiles:tiles-api:3.0.5'
+	implementation 'org.apache.tiles:tiles-el:3.0.5'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	  // lombok
   	annotationProcessor("org.projectlombok:lombok")
  	compileOnly("org.projectlombok:lombok")
  	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'javax.servlet:jstl'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

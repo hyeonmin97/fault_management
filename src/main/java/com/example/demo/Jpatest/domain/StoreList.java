@@ -1,4 +1,4 @@
-
+/*
 package com.example.demo.Jpatest.domain;
 
 
@@ -54,11 +54,8 @@ public class StoreList extends BaseTimeEntity{
 	
 	@Column(length = 60)
 	private String storeIndustry;
-	
-	
-	
-	
-	
-	
+		
 
 }
+
+*/
