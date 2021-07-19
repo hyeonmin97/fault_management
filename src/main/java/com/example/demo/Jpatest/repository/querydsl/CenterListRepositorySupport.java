@@ -25,4 +25,5 @@ public class CenterListRepositorySupport extends QuerydslRepositorySupport {
 				.where(centerList.state.eq(state))
 				.fetch();
 	}
+	
 }

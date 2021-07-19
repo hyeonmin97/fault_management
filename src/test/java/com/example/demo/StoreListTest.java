@@ -9,8 +9,8 @@ import com.example.demo.Jpatest.domain.CenterList;
 import com.example.demo.Jpatest.domain.StoreList;
 import com.example.demo.Jpatest.domain.Headquarters.Headquarters;
 import com.example.demo.Jpatest.domain.Headquarters.HeadquartersId;
-import com.example.demo.Jpatest.repository.CenterListRepository;
 import com.example.demo.Jpatest.repository.StoreListRepository;
+import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)

@@ -37,7 +37,7 @@ public class CenterList extends BaseTimeEntity {
 	private String detailAddress;//상세주소
 	
 	
-	@Column(length=20)
+	@Column(length=20, unique=true, nullable=false)
 	private String phoneNumber;//전화번호
 	
 	@Column(length=20)
