@@ -50,4 +50,8 @@ public class CenterListService {
 		//업데이트 확인
 		centerListRepository.findByPhoneNumber(phoneNumber);
 	}
+	
+	public void delete(Long id) {
+		centerListRepository.deleteById(id);
+	}
 }
