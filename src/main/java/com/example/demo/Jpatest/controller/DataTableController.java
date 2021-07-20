@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,12 +28,13 @@ public class DataTableController {
 		return modelAndView;
 	}
 	
-	//json 형식으로 리턴
 	@PostMapping("/dataTable")
 	//전체 리턴
-	public @ResponseBody HashMap<Object, String> list(HashMap<Object, String> param) {
+	public @ResponseBody HashMap<Object, String> list(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
 		log.info(param.toString());
 		HashMap<Object, String> hash = new HashMap<Object, String>();
+		hash.put("col1", "");
+		hash.put("col2", "");
 		return hash;
 	}
 }

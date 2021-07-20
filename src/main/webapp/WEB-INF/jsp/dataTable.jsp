@@ -17,17 +17,20 @@ var column = [ "col1", "col2" ];
 $(document).ready(function() {
 	$("#example").DataTable({
 		"processing": true,
-	    "serverSide": true,
+	    "serverSide": false,
+	    //"length" : 10,
 	    "ajax": {
 	        "url": "/dataTable",
 	        "type": "POST",
-	        "dataType": "JSON"
+	        "dataType": "JSON",
+	        "data" : {
+		        test : "1111"
+		    },
 	    },
 	    "columns" : [
 	        {"data": "col1"},
 	        {"data": "col2"}
-	    ]
-	
+	    ]	    
 	});
 });
 </script>

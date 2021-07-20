@@ -1,7 +1,5 @@
 package com.example.demo.Jpatest.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +26,6 @@ public class UserService implements UserDetailsService {
 	public Long save(UserInfoDto infoDto) {
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
 		infoDto.setPassword(encoder.encode(infoDto.getPassword()));
 		return userRepository.save(UserInfo.builder()
 				.email(infoDto.getEmail())
