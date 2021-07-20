@@ -2,6 +2,7 @@ package com.example.demo.Jpatest.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Jpatest.domain.CenterList;
 import com.example.demo.Jpatest.dto.CenterListDto;
+import com.example.demo.Jpatest.dto.UpdateDto;
 import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,21 @@ public class CenterListService {
 	@Autowired
 	private final CenterListRepository centerListRepository;
 	
-	public CenterList save(CenterListDto centerListDto) {
+	public CenterListDto findByPhoneNumber(String phoneNumber) {
+		Optional<CenterList> list = centerListRepository.findByPhoneNumber(phoneNumber);
+		return CenterListDto.builder()
+				.code(list.get().getCode())
+				.name(list.get().getName())
+				.postalCode(list.get().getPostalCode())
+				.address(list.get().getAddress())
+				.detailAddress(list.get().getDetailAddress())
+				.phoneNumber(list.get().getPhoneNumber())
+				.faxNumber(list.get().getFaxNumber())
+				.state(list.get().getState())
+				.build();
+	}
+	
+	public CenterList insert(CenterListDto centerListDto) {
 		return centerListRepository.save(centerListDto.toEntity());
 	}
 	
@@ -43,11 +59,11 @@ public class CenterListService {
 		return centerDtoList;
 	}
 	
-	public void update(String phoneNumber, String column, String value) {
-		centerListRepository.insert(phoneNumber, column, value);
+	public void update(UpdateDto updateDto) {
+		centerListRepository.update(updateDto);
 		
 		//업데이트 확인
-		centerListRepository.findByPhoneNumber(phoneNumber);
+		centerListRepository.findByPhoneNumber(updateDto.getKeyValue());
 	}
 	
 	public void delete(Long id) {

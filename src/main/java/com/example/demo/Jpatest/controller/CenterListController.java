@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.Jpatest.dto.CenterListDto;
+import com.example.demo.Jpatest.dto.UpdateDto;
 import com.example.demo.Jpatest.service.CenterListService;
 
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class CenterListController {
 	@PostMapping("/centerList")
 	//전체값 입력해서 추가
 	public @ResponseBody Long write(@RequestBody CenterListDto list) {
-		return centerListService.save(list).getCode();
+		return centerListService.insert(list).getCode();
 		
 	}
 	//patch, put
@@ -41,8 +42,8 @@ public class CenterListController {
 	//PatchMapping쓰고싶었지만..
 	@GetMapping("/centerListPatch")
 	//일부값 컬럼지정해서 수정
-	public @ResponseBody String update(String phonNumber, String column, String value) {
-		centerListService.update(phonNumber, column, value);
+	public @ResponseBody String update(UpdateDto updateDto) {
+		centerListService.update(updateDto);
 		return "/centerList";
 	}
 	
@@ -51,7 +52,7 @@ public class CenterListController {
 	//컬럼삭제(기본키)
 	public String delete(Long code) {
 		centerListService.delete(code);
-		return "/centerList";
+		return "/centerList";//삭제 후 이동
 	}
 	
 }

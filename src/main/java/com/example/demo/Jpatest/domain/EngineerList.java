@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +42,19 @@ public class EngineerList {
 	
 	@Column(length=10)
 	private String resignationDate;//퇴사일
+
+	@Builder
+	public EngineerList(String code, String name, int age, String phoneNumber, String state, CenterList centerList,
+			String startDate, String resignationDate) {
+		this.code = code;
+		this.name = name;
+		this.age = age;
+		this.phoneNumber = phoneNumber;
+		this.state = state;
+		this.centerList = centerList;
+		this.startDate = startDate;
+		this.resignationDate = resignationDate;
+	}
 	
 	
 }
