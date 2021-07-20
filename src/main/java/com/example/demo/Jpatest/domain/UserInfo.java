@@ -23,6 +23,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserInfo extends BaseTimeEntity implements UserDetails{
+
+	private static final long serialVersionUID = -3952223124781341147L;
+
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

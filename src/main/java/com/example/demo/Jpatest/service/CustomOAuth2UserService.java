@@ -17,11 +17,8 @@ import com.example.demo.Jpatest.domain.oauth.User;
 import com.example.demo.Jpatest.dto.OAuthAttributes;
 import com.example.demo.Jpatest.dto.SessionUser;
 import com.example.demo.Jpatest.repository.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 
 @RequiredArgsConstructor
 @Service

@@ -2,17 +2,16 @@ package com.example.demo.Jpatest.dto;
 
 import java.io.Serializable;
 
-import org.springframework.context.annotation.Bean;
 
 import com.example.demo.Jpatest.domain.oauth.User;
 
 import lombok.Getter;
 
 
-//이거 안쓰고 userinfdto로 세션관리하면 직렬화하라고 오류남
 @Getter
 public class SessionUser implements Serializable {
 	
+	private static final long serialVersionUID = 4212624117049361461L;
 	private String name;
 	private String email;
 	private String picture;

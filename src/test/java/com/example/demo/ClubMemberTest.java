@@ -1,15 +1,12 @@
 package com.example.demo;
 
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.Jpatest.domain.UserInfo;
-import com.example.demo.Jpatest.domain.UserRole;
 import com.example.demo.Jpatest.repository.UserInfoRepository;
 
 //@SpringBootTest

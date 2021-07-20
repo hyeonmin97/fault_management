@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.example.demo.Jpatest.domain.Headquarters.Headquarters;
 
 import lombok.Builder;
 import lombok.Getter;

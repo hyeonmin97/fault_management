@@ -3,7 +3,6 @@ package com.example.demo.Jpatest.domain.Headquarters;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

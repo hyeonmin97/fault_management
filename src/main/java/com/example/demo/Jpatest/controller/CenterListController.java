@@ -2,28 +2,17 @@ package com.example.demo.Jpatest.controller;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.Jpatest.domain.CenterList;
 import com.example.demo.Jpatest.dto.CenterListDto;
 import com.example.demo.Jpatest.service.CenterListService;
-import com.fasterxml.jackson.core.JsonToken;
-import com.mysql.cj.xdevapi.JsonNumber;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
 @Controller
 @AllArgsConstructor
 public class CenterListController {

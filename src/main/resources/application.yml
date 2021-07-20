@@ -13,11 +13,7 @@ spring:
     password : root
     driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     
-    #Tiles
-    server:
-      error:
-        whitelabel:
-            enabled: false  
+    
   jpa:
     hibernate:
       ddl-auto: validate
@@ -47,6 +43,12 @@ logging:
     #'[org.springframework]' : debug # 스프링 시큐리티 동작 확인
     
     
+#Tiles
+#에러페이지 커스텀으로 변경
+server:
+  error:
+    whitelabel:
+        enabled: false 
 
 
     

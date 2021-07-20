@@ -1,10 +1,7 @@
 package com.example.demo.Jpatest.repository.querydsl.CenterList;
 
-import com.querydsl.core.types.Path;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.StringPath;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
