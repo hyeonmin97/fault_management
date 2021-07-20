@@ -17,7 +17,7 @@ var column = [ "col1", "col2" ];
 $(document).ready(function() {
 	$("#example").DataTable({
 		"processing": true,
-	    "serverSide": false,
+	    "serverSide": true,
 	    //"length" : 10,
 	    "ajax": {
 	        "url": "/dataTable",
@@ -30,7 +30,7 @@ $(document).ready(function() {
 	    "columns" : [
 	        {"data": "col1"},
 	        {"data": "col2"}
-	    ]	    
+	    ]	 
 	});
 });
 </script>

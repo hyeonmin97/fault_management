@@ -10,7 +10,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class DataTableDto extends RequestDto implements Serializable{
-	private int draw;
-    private int recordsTotal;
-    private int recordsFiltered;
+	private String test;
 }
