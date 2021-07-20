@@ -30,10 +30,10 @@ public class UserService implements UserDetailsService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		infoDto.setPassword(encoder.encode(infoDto.getPassword()));
-		
 		return userRepository.save(UserInfo.builder()
 				.email(infoDto.getEmail())
 				.auth(infoDto.getAuth())
 				.password(infoDto.getPassword()).build()).getId();
 	}
 }
+

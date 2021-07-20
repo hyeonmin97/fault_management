@@ -24,7 +24,7 @@ public class ClubMemberTest {
 	@Test
 	public void insertDummies()
 	{
-		IntStream.rangeClosed(1,50).forEach(i ->{
+		IntStream.rangeClosed(1,10).forEach(i ->{
 			UserInfo clubMember = UserInfo.builder()
 				.email("user" + i + "@zerock.org")
 				.password(passwordEncoder.encode("1111"))

@@ -17,10 +17,16 @@ public class HeadquartersTest {
 	@Test
 	public void headTest() {
 		HeadquartersId headqutersId = new HeadquartersId();
-		headqutersId.setHqCode("abc");
+		HeadquartersId headqutersId2 = new HeadquartersId();
+		headqutersId.setHqCode("노원");
 		headqutersId.setAreaCode("상계1");
+		headqutersId2.setHqCode("노원");
+		headqutersId2.setAreaCode("상계2");
 		repository.save(Headquarters.builder()
 				.headquatersId(headqutersId).build());
+		repository.save(Headquarters.builder()
+				.headquatersId(headqutersId2).build());
+		
 	}
 	
 }
