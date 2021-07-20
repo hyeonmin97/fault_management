@@ -2,6 +2,7 @@ package com.example.demo.Jpatest.controller;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.Jpatest.domain.CenterList;
 import com.example.demo.Jpatest.dto.CenterListDto;
 import com.example.demo.Jpatest.service.CenterListService;
+import com.fasterxml.jackson.core.JsonToken;
+import com.mysql.cj.xdevapi.JsonNumber;
 
 import lombok.AllArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @AllArgsConstructor
 public class CenterListController {
@@ -45,17 +49,20 @@ public class CenterListController {
 	//patch 는 일부 수정, put은 전체 수정
 	//patch는 일부만 보냈을때 그 부분이 수정되고 put은 일부만 보내면 나머지는 null으로 변함
 	
-	@PatchMapping("/centerList")
+	//PatchMapping쓰고싶었지만..
+	@GetMapping("/centerListPatch")
 	//일부값 컬럼지정해서 수정
 	public @ResponseBody String update(String phonNumber, String column, String value) {
 		centerListService.update(phonNumber, column, value);
 		return "/centerList";
 	}
 	
-	@DeleteMapping("/centerList")
+	//DeleteMapping쓰고 싶었는데 안됨..
+	@GetMapping("/centerListDelete")
 	//컬럼삭제(기본키)
-	public void delete(Long id) {
-		centerListService.delete(id);
+	public String delete(Long code) {
+		centerListService.delete(code);
+		return "/centerList";
 	}
 	
 }

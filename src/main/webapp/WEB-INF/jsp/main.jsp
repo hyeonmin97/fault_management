@@ -1,3 +1,4 @@
+<%@page import="com.example.demo.Jpatest.dto.SessionUser"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -7,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>hello world</h1>
+
+<form action="/centerListDelete" method="get">
+	<input type="text" name="code">
+	<input type="submit">Àü¼Û
+</form>
 </body>
 </html>
