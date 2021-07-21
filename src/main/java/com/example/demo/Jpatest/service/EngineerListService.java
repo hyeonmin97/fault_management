@@ -1,8 +1,10 @@
 package com.example.demo.Jpatest.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Jpatest.domain.EngineerList;
 import com.example.demo.Jpatest.dto.EngineerListDto;
 import com.example.demo.Jpatest.dto.UpdateDto;
 import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
@@ -17,6 +19,9 @@ public class EngineerListService {
 	private final EngineerListRepository repository;
 	
 	
+	public List<EngineerList> list() {
+		return repository.findAll();
+	}
 	
 	//전체 내용 삽입
 	public void insert(EngineerListDto engineer) {
