@@ -36,10 +36,10 @@ public class HeadquartersController {
 		return "/headquarters";//전체 리스트 확인
 	}
 	
-	@PostMapping("/headquartersUpdate")
-	//업데이트
-	public @ResponseBody void update(@RequestBody HeadquartersDto dto, String column, String value){
-		headquartersService.update(dto, column, value);
-	}
+//	@PostMapping("/headquartersUpdate")
+//	//업데이트
+//	public @ResponseBody void update(@RequestBody HeadquartersDto dto, String column, String value){
+//		headquartersService.update(dto, column, value);
+//	}
 	
 }

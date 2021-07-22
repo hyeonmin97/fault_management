@@ -1,10 +1,13 @@
 package com.example.demo.Jpatest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Jpatest.domain.DefectType;
 import com.example.demo.Jpatest.domain.EngineerList;
+import com.example.demo.Jpatest.dto.DefectTypeDto;
 import com.example.demo.Jpatest.dto.EngineerListDto;
 import com.example.demo.Jpatest.dto.UpdateDto;
 import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
@@ -19,8 +22,23 @@ public class EngineerListService {
 	private final EngineerListRepository repository;
 	
 	
-	public List<EngineerList> list() {
-		return repository.findAll();
+	public List<EngineerListDto> getlist() {
+		List<EngineerList> lists = repository.findAll();
+		List<EngineerListDto> dtoList = new ArrayList<>();
+		for(EngineerList list : lists) {
+			EngineerListDto dto = EngineerListDto.builder()
+									.code(list.getCode())
+									.age(list.getAge())
+									.name(list.getName())
+									.phoneNumber(list.getPhoneNumber())
+									.resignationDate(list.getResignationDate())
+									.startDate(list.getStartDate())
+									.state(list.getState())
+									.centerList(list.getCenterList())
+									.build();
+			dtoList.add(dto);
+		}
+		return dtoList;
 	}
 	
 	//전체 내용 삽입

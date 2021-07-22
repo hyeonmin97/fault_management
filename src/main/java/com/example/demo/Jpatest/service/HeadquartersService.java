@@ -2,19 +2,23 @@ package com.example.demo.Jpatest.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Jpatest.domain.StoreList;
 import com.example.demo.Jpatest.domain.Headquarters.Headquarters;
+import com.example.demo.Jpatest.domain.Headquarters.HeadquartersId;
 import com.example.demo.Jpatest.dto.HeadquartersDto;
 import com.example.demo.Jpatest.repository.HeadquartersRepository;
 import com.example.demo.Jpatest.repository.StoreListRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class HeadquartersService {
 	@Autowired
 	HeadquartersRepository headquartersRepository;
@@ -41,16 +45,26 @@ public class HeadquartersService {
 		headquartersRepository.save(dto.toEntity()); 
 	}
 	
-	//업데이트
-	public void update(HeadquartersDto dto, String column, String value) {
-		//전혀 모르겠는데??
-		if(column.equals("area_code"))
-			dto.toBuilder().areaCode(value);
-		else if(column.equals("hq_code")) {
-			dto.toBuilder().hqCode(value);
-		}
-		headquartersRepository.save(dto.toEntity());
-	}
+//	//업데이트실패
+//	public void update(HeadquartersDto dto, String column, String value) {
+//		HeadquartersId i = new HeadquartersId();
+//		i.setAreaCode(dto.getAreaCode());
+//		i.setHqCode(dto.getHqCode());
+//		Optional<Headquarters> a = headquartersRepository.findByHeadquatersId(i);
+//		a.get().getHeadquatersId().setAreaCode(value);
+//		
+//		if(column.equals("area_code")) {
+//			log.info("변경전: "+ a.get().getHeadquatersId().getAreaCode());
+//			a.get().toBuilder().headquatersId(a.get().getHeadquatersId()).build();
+//			log.info("변경후: "+ a.get().getHeadquatersId().getAreaCode());
+//		}
+////		else if(column.equals("hq_code")) {
+////			log.info(dto.getAreaCode());
+////			dto.toBuilder().hqCode(value).build();
+////		}
+//		headquartersRepository.saveAndFlush(a.get());
+//
+//	}
 	
 	//삭제
 	public void delete(HeadquartersDto dto) {

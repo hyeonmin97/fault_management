@@ -20,7 +20,7 @@ public class EngineerListDto {
 	private String resignationDate;
 	
 	@Builder
-	public EngineerListDto(String code, String name, int age, String phoneNumber, String state, String startDate,
+	public EngineerListDto(String code, String name, int age, String phoneNumber, String state, CenterList centerList, String startDate,
 			String resignationDate) {
 		this.code = code;
 		this.name = name;
@@ -28,6 +28,7 @@ public class EngineerListDto {
 		this.phoneNumber = phoneNumber;
 		this.state = state;
 		this.startDate = startDate;
+		this.centerList = centerList;
 		this.resignationDate = resignationDate;
 	}
 	

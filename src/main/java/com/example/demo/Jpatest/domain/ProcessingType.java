@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -72,4 +73,22 @@ public class ProcessingType extends BaseTimeEntity{
 	@Column(length=1)
 	//예약점검 여부
 	private String inspectionStatus;
+
+	@Builder
+	public ProcessingType(Long serialNumber, StoreList store, DefectType defect, String detailContent,
+			String receptionist, String receptionistPhoneNumber, EngineerList engineer, LocalDateTime allocationDate,
+			LocalDateTime completionDate, ProgressiveStep progressiveStep, String method, String inspectionStatus) {
+		this.serialNumber = serialNumber;
+		this.store = store;
+		this.defect = defect;
+		this.detailContent = detailContent;
+		this.receptionist = receptionist;
+		this.receptionistPhoneNumber = receptionistPhoneNumber;
+		this.engineer = engineer;
+		this.allocationDate = allocationDate;
+		this.completionDate = completionDate;
+		this.progressiveStep = progressiveStep;
+		this.method = method;
+		this.inspectionStatus = inspectionStatus;
+	}
 }

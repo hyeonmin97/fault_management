@@ -32,8 +32,8 @@ public class headquartersDtoDelete {
 	
 	@Test
 	public void test() {
-		HeadquartersDto dto = HeadquartersDto.builder().areaCode("논현1").hqCode("강남").build();
-		
+		HeadquartersDto dto = HeadquartersDto.builder().areaCode("저기").hqCode("경기").build();
+		log.info("입력된 dto" + dto.getAreaCode());
 		service.update(dto, "area_code", "변경");
 	}
 }
