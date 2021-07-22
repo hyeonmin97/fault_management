@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import static com.example.demo.Jpatest.domain.QCenterList.*;
 
 import com.example.demo.Jpatest.domain.CenterList;
+import com.example.demo.Jpatest.dto.UpdateDto;
 
 @RequiredArgsConstructor
 public class CustomizedCenterListRepositoryImpl implements CustomizedCenterListRepository {
@@ -16,46 +17,40 @@ public class CustomizedCenterListRepositoryImpl implements CustomizedCenterListR
 
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insert(String phoneNumber, String column, String value) {
+	public void update(UpdateDto updateData) {
 		
 		CenterList member = jpaQueryFactory.select(Projections.fields(CenterList.class,
 				centerList.code
 				))
 				.from(centerList)
-				.where(centerList.phoneNumber.eq(phoneNumber))
+				.where(centerList.phoneNumber.eq(updateData.getKeyValue()))
 				.fetchOne();
 		//없는 값이 들어올 경우 nullpointerexception발생
 		try {
 			if(member.getCode() != null) {
 				
-				if(column.equals("address")) {
+				if(updateData.getColumnName().equals("address")) {
 					selectColumn = centerList.address;
 				}
-				else if(column.equals("detail_address")) {
+				else if(updateData.getColumnName().equals("detail_address")) {
 					selectColumn = centerList.detailAddress;
 				}
-				else if(column.equals("fax_number")) {
+				else if(updateData.getColumnName().equals("fax_number")) {
 					selectColumn = centerList.faxNumber;
 				}
-				else if(column.equals("name")) {
+				else if(updateData.getColumnName().equals("name")) {
 					selectColumn = centerList.name;
 				}
-				else if(column.equals("phone_number")) {
+				else if(updateData.getColumnName().equals("phone_number")) {
 					selectColumn = centerList.phoneNumber;
 				}
-				else if(column.equals("postal_code")) {
+				else if(updateData.getColumnName().equals("postal_code")) {
 					selectColumn = centerList.postalCode;
 				}
-				else if(column.equals("state")) {
+				else if(updateData.getColumnName().equals("state")) {
 					selectColumn = centerList.state;
 				}
-				jpaQueryFactory.update(centerList).where(centerList.phoneNumber.eq(phoneNumber)).set(selectColumn, value).execute();
+				jpaQueryFactory.update(centerList).where(centerList.phoneNumber.eq(updateData.getKeyValue())).set(selectColumn, updateData.getUpdateValue()).execute();
 			}
 		}catch(NullPointerException e){
 			e.printStackTrace();

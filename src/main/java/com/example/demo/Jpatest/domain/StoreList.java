@@ -77,9 +77,12 @@ public class StoreList extends BaseTimeEntity{
 	 
 	@Column(length = 60)
 	private String industry;
+	public void setHeadquatersId(Headquarters headquatersId) {
+		this.headquatersId = headquatersId;
+	}
 
 
-	@Builder
+	@Builder(toBuilder=true)
 	public StoreList(String code, Headquarters headquatersId, String name, String postalCode, String address,
 			String detailAddress, String phoneNumber, String faxNumber, String dateOpen, String dateClose, String state,
 			CenterList centerList, String industry) {
