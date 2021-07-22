@@ -4,4 +4,5 @@ import com.example.demo.Jpatest.dto.UpdateDto;
 
 public interface CustomizedEngineerListRepository {
 	public void update(UpdateDto updateDto);
+	public void increaseAge(int value);
 }

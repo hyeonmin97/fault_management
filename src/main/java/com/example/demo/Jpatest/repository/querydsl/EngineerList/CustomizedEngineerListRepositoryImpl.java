@@ -44,6 +44,10 @@ public class CustomizedEngineerListRepositoryImpl implements CustomizedEngineerL
 		}
 		
 	}
+	@Override
+	public void increaseAge(int value) {
+		jpaQueryFactory.update(engineerList).set(engineerList.age, engineerList.age.add(value)).execute();
+	}
 	
 	
 }
