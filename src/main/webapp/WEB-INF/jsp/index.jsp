@@ -53,7 +53,7 @@
 			</div>
 			<br>
 			<div class= "btn2">
-				<button type="button" onClick="location.href='/admin';">어드민권한 페이지 이동</button> 
+				<button type="button" onClick="location.href='/home';">어드민권한 페이지 이동</button> 
 			</div>
 			<br>
 		</div>		

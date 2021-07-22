@@ -7,11 +7,15 @@
 
 	<definition name="base" template="/WEB-INF/jsp/layout/base.jsp"> 
 	  	<put-attribute name="header"    			value="/WEB-INF/jsp/layout/header.jsp" />
-	  	<put-attribute name="body" value="" />
+	  	<put-attribute name="content" 					value="/WEB-INF/jsp/layout/content.jsp" />
 	  	<put-attribute name="footer"    		value="/WEB-INF/jsp/layout/footer.jsp" />
 	</definition>
 	
 	 <definition name="home" extends="base">
         <put-attribute name="body" value="/WEB-INF/jsp/layout/home.jsp" />
+     </definition>
+     
+     <definition name="layout/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/jsp/layout/{1}.jsp" cascade="true"/>
      </definition>
 </tiles-definitions>

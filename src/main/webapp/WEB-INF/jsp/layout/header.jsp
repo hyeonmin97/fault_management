@@ -4,8 +4,8 @@
  
 <div class ="menu">
      <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#">center_List</a></li>
+          <li><a href="/home" class="active">Home</a></li>
+          <li><a href="dataTable" onClick="changeContent('main');">center_List</a></li>
           <li><a href="#">defect_Type</a></li>
           <li><a href="#">engineer_List</a></li>
           <li><a href="#">periodic_Inspection</a></li>
@@ -15,3 +15,8 @@
      </ul>
 </div>
 
+<script>
+   function changeContent(name){
+      $('#bodyContents').children().remove().load("/layout/"+name);
+   }
+</script>
