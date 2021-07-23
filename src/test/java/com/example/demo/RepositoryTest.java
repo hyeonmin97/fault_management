@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
+import com.example.demo.repository.querydsl.CenterList.CenterListRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)

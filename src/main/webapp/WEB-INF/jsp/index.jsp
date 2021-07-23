@@ -1,4 +1,4 @@
-<%@page import="com.example.demo.Jpatest.dto.SessionUser"%>
+<%@page import="com.example.demo.dto.SessionUser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

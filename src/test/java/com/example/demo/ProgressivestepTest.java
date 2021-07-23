@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.example.demo.Jpatest.dto.ProgressiveStepDto;
-import com.example.demo.Jpatest.service.ProgressiveStepService;
+import com.example.demo.dto.ProgressiveStepDto;
+import com.example.demo.service.ProgressiveStepService;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)

@@ -7,8 +7,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.Jpatest.dto.UpdateDto;
-import com.example.demo.Jpatest.repository.querydsl.EngineerList.EngineerListRepository;
+import com.example.demo.dto.UpdateDto;
+import com.example.demo.repository.querydsl.EngineerList.EngineerListRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)

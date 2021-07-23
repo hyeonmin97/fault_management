@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.demo.Jpatest.domain.Headquarters.Headquarters;
-import com.example.demo.Jpatest.domain.Headquarters.HeadquartersId;
-import com.example.demo.Jpatest.repository.HeadquartersRepository;
+import com.example.demo.domain.Headquarters.Headquarters;
+import com.example.demo.domain.Headquarters.HeadquartersId;
+import com.example.demo.repository.HeadquartersRepository;
 
 @SpringBootTest
 public class HeadquartersTest {

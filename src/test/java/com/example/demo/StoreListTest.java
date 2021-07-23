@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.example.demo.Jpatest.domain.CenterList;
-import com.example.demo.Jpatest.domain.StoreList;
-import com.example.demo.Jpatest.domain.Headquarters.Headquarters;
-import com.example.demo.Jpatest.domain.Headquarters.HeadquartersId;
-import com.example.demo.Jpatest.repository.StoreListRepository;
-import com.example.demo.Jpatest.repository.querydsl.CenterList.CenterListRepository;
+import com.example.demo.domain.CenterList;
+import com.example.demo.domain.StoreList;
+import com.example.demo.domain.Headquarters.Headquarters;
+import com.example.demo.domain.Headquarters.HeadquartersId;
+import com.example.demo.repository.StoreListRepository;
+import com.example.demo.repository.querydsl.CenterList.CenterListRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)

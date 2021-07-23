@@ -5,19 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.example.demo.domain.DefectType;
-import com.example.demo.dto.DefectTypeDto;
-import com.example.demo.service.DefectTypeService;
+import com.example.demo.domain.StoreList;
+import com.example.demo.service.ProcessingTypeService;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)
-public class DefectTest {
+public class StoreHistoryTest {
 	@Autowired
-	DefectTypeService service;
+	ProcessingTypeService service;
 	
 	@Test
 	public void test() {
-		DefectTypeDto a = DefectTypeDto.builder().code("99").largeCategory("HW").middleCategory("PC").smallCategory("변경한거").build();
-		service.save(a);
+		StoreList list = StoreList.builder().code("001").build();
+		service.getStoreProcessHistory(list);
 	}
 }
