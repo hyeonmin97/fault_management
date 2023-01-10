@@ -6,7 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.example.demo.Jpatest.domain.QEngineerList.engineerList;
+import static com.example.demo.domain.QEngineerList.engineerList;
 
 import com.example.demo.dto.UpdateDto;
 @RequiredArgsConstructor

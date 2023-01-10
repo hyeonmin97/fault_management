@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.CenterList;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import static com.example.demo.Jpatest.domain.QCenterList.*;
+import static com.example.demo.domain.QCenterList.*;
 
 import java.util.List;
 @Repository

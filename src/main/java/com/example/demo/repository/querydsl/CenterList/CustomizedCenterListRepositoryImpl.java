@@ -5,7 +5,7 @@ import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
-import static com.example.demo.Jpatest.domain.QCenterList.*;
+import static com.example.demo.domain.QCenterList.*;
 
 import com.example.demo.domain.CenterList;
 import com.example.demo.dto.UpdateDto;

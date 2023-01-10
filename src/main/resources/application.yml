@@ -8,7 +8,7 @@ spring:
     include: oauth
     
   datasource:
-    url : jdbc:log4jdbc:mariadb://192.168.1.161:3306/park?autoReconnect=true&characterencoding=UTF-8
+    url : jdbc:log4jdbc:mariadb://192.168.0.75:3306/park?autoReconnect=true&characterencoding=UTF-8
     username : root
     password : root
     driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
@@ -24,7 +24,8 @@ spring:
       #validate: 변경된 스키마가 있다면 변경점을 출력하고 애플리케이션을 종료한다
     show_sql : true  
     
-    properties:      hibernate:
+    properties:
+      hibernate:
         '[format_sql]' : true
   security :    
     oauth2:
