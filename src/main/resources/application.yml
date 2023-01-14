@@ -8,10 +8,10 @@ spring:
     include: oauth
     
   datasource:
-    url : jdbc:log4jdbc:mariadb://192.168.0.75:3306/park?autoReconnect=true&characterencoding=UTF-8
+    url : jdbc:mariadb://192.168.0.75:3306/park?autoReconnect=true&characterencoding=UTF-8
     username : root
     password : root
-    driver-class-name : net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    driver-class-name : org.mariadb.jdbc.Driver
     
     
   jpa:

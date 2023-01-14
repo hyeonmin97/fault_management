@@ -1,9 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.2'
+	id 'org.springframework.boot' version '2.7.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id 'war'
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.example'
@@ -16,23 +14,12 @@ repositories {
 
 
 dependencies {
-
-
-	//tiles 관련 라이브러리
-	implementation 'javax.servlet:jstl:1.2'
-	implementation 'org.apache.tiles:tiles-jsp:3.0.5'
-	implementation 'org.apache.tiles:tiles-servlet:3.0.5'
-	implementation 'org.apache.tiles:tiles-core:3.0.5'
-	implementation 'org.apache.tiles:tiles-api:3.0.5'
-	implementation 'org.apache.tiles:tiles-el:3.0.5'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	  // lombok
   	annotationProcessor("org.projectlombok:lombok")
  	compileOnly("org.projectlombok:lombok")
  	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -41,63 +28,24 @@ dependencies {
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
-	
-	
-	//query dsl
-	// https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
-	implementation 'com.querydsl:querydsl-jpa'
-	implementation 'com.querydsl:querydsl-apt'
+
 	
 	//jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	
-	//log4jdbc
-	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
-	// Oauth
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-
-	//sequrity
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.5.1'
-	compile('org.springframework.boot:spring-boot-starter-oauth2-client');
 	
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	
 	//json
-	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+
+	//thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
 }
 
-//querydsl
-def querydslDir = "$buildDir/generated/querydsl"
-
-querydsl {
-    jpa = true
-    querydslSourcesDir = querydslDir
-}
-
-sourceSets {
-    main.java.srcDir querydslDir
-}
-
-configurations {
-    querydsl.extendsFrom compileClasspath
-}
-
-compileQuerydsl {
-    options.annotationProcessorPath = configurations.querydsl
-}
 
 test {
 	useJUnitPlatform()
-}
-bootWar {
-    archiveBaseName = '-'
-    archiveFileName = '-.war'
-    archiveVersion = "0.0.0"
-}
-compileJava.options.encoding = 'UTF-8'
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
 }
