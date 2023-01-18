@@ -1,12 +1,14 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Store extends StoreAgencySuperEntity {
 
     @Id

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Getter
-public abstract class StoreAgencySuperEntity extends BaseTimeEntity{
+public class StoreAgencySuperEntity extends BaseTimeEntity{
 
     private LocalDateTime openDate;
     private LocalDateTime closeDate;
