@@ -24,7 +24,7 @@ public class Paging {
         paging.setCurrentPage(currentPage);
         paging.setMaxSize(maxSize);
         paging.setEnablePrev(currentPage != 1);
-        paging.setEnableNext(currentPage != maxSize);
+        paging.setEnableNext(currentPage <= maxSize);
 
         if (currentPage <= 10) {
             paging.setStartPage(1);
