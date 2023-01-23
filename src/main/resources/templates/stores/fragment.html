@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <table th:fragment="table(list)" class="table table-sm">
+        <thead>
+            <tr>
+                <th>점포코드</th>
+                <th>지역</th>
+                <th>점포명</th>
+                <th>매장 전화번호</th>
+                <th>우편번호</th>
+                <th>주소</th>
+                <th>상세주소</th>
+                <th>사장님 이름</th>
+                <th>사장님 전화번호</th>
+                <th>장애 등록</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="row : ${list}">
+                <td th:text="${row.getStoreCode()}">점포코드</td>
+                <td th:text="${row.getHeadOfficeCode()}">지역</td>
+                <td th:text="${row.getName()}">점포명</td>
+                <td th:text="${row.getTelephone()}">매장 전화번호</td>
+                <td th:text="${row.getPostal_code()}">우편번호</td>
+                <td th:text="${row.getAddress()}">주소</td>
+                <td th:text="${row.getAddressDetail()}">상세주소</td>
+                <td th:text="${row.getManagerName()}">사장님 이름</td>
+                <td th:text="${row.getManagerPhone()}">사장님 전화번호</td>
+                <td><a th:href="|/stores/${row.getStoreCode()}/incident|"><button type="button" class="btn btn-primary">장애 등록</button></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:fragment="searchForm(type, keyword)" action="/stores/search" method="get">
+        <!-- 검색기능 추가  -->
+        <div class="w-75 input-group mb-5" >
+            <div class="w-25 input-group">
+                <label class="input-group-text" for="inputGroupSelect01">검색조건</label>
+                <select name="type" class="form-select" id="inputGroupSelect01">
+                    <option th:each="value : ${T(com.example.demo.repository.SearchType).values()}"
+                            th:value="${value.name()}" th:text="${value.getValue()}" th:selected="${value.name().equals(type)}">
+                    </option>
+                </select>
+            </div>
+
+            <input th:value="${keyword}" name="keyword" type="text" class="form-control ms-2 me-2">
+
+            <button type="submit" class="btn btn-outline-dark">검색</button>
+        </div>
+    </form>
+</body>
+</html>
