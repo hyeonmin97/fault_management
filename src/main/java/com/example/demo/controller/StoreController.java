@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/store")
+@RequestMapping("/stores")
 @Slf4j
 public class StoreController {
 
@@ -35,7 +35,7 @@ public class StoreController {
             model.addAttribute("list", optionalList.get());
         }
 
-        return "/store/list";
+        return "/stores/list";
     }
 
     @GetMapping("/search")
@@ -56,7 +56,7 @@ public class StoreController {
         model.addAttribute("type", type);
         model.addAttribute("keyword", keyword);
 
-        return "/store/searchList";
+        return "/stores/searchList";
     }
 
 }

@@ -12,13 +12,13 @@
 <body>
 
   <!-- 검색 폼 -->
-  <div th:replace="~{store/fragment :: searchForm(${type}, ${keyword})}"></div>
+  <div th:replace="~{stores/fragment :: searchForm(${type}, ${keyword})}"></div>
 
   <!-- 데이터 출력 테이블  -->
   <div style="text-align: center">
     <div style="min-width:1000px;width: 80%;display: inline-block">
       <!--테이블-->
-      <div th:replace="~{store/fragment :: table(${list})}"></div>
+      <div th:replace="~{stores/fragment :: table(${list})}"></div>
     </div>
 
     <div></div>
