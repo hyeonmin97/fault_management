@@ -14,6 +14,7 @@
                 <th>상세주소</th>
                 <th>사장님 이름</th>
                 <th>사장님 전화번호</th>
+                <th>장애 등록</th>
             </tr>
         </thead>
         <tbody>
@@ -27,11 +28,12 @@
                 <td th:text="${row.getAddressDetail()}">상세주소</td>
                 <td th:text="${row.getManagerName()}">사장님 이름</td>
                 <td th:text="${row.getManagerPhone()}">사장님 전화번호</td>
+                <td><a th:href="|/stores/${row.getStoreCode()}/incident|"><button type="button" class="btn btn-primary">장애 등록</button></a></td>
             </tr>
         </tbody>
     </table>
 
-    <form th:fragment="searchForm(type, keyword)" action="/store/search" method="get">
+    <form th:fragment="searchForm(type, keyword)" action="/stores/search" method="get">
         <!-- 검색기능 추가  -->
         <div class="w-75 input-group mb-5" >
             <div class="w-25 input-group">
