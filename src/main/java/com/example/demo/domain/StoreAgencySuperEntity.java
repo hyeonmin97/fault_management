@@ -1,11 +1,13 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
+import lombok.ToString;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Getter
+@ToString
 public class StoreAgencySuperEntity extends BaseTimeEntity{
 
     private LocalDateTime openDate;
