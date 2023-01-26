@@ -1,16 +1,18 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @ToString
+@SuperBuilder
+@NoArgsConstructor
 public class Agency extends StoreAgencySuperEntity {
 
     @Id

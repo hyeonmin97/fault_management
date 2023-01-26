@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.IncidentRequestDto;
 import com.example.demo.controller.dto.StoreListDto;
+import com.example.demo.domain.IncidentType;
 import com.example.demo.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,4 +61,12 @@ public class StoreController {
         return "/stores/searchList";
     }
 
+    @GetMapping("/{storeCode}/incident")
+    public String getIncident(@PathVariable String storeCode, Model model) {
+
+        IncidentRequestDto incidentRequestDto = storeService.incidentRequestData(storeCode);
+        model.addAttribute("incidentRequestDto", incidentRequestDto);
+
+        return "/stores/addIncident";
+    }
 }
