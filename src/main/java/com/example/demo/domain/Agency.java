@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 
@@ -21,4 +22,7 @@ public class Agency extends StoreAgencySuperEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StoreAgencyStatus storeAgencyStatus;
+
+    @Column(columnDefinition = "point")
+    private Point point;
 }

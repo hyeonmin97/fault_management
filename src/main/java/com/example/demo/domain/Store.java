@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,4 +35,7 @@ public class Store extends StoreAgencySuperEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @Column(columnDefinition = "point")
+    private Point point;
 }
