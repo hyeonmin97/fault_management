@@ -1,13 +1,17 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Getter
 @ToString
+@NoArgsConstructor
+@SuperBuilder
 public class StoreAgencySuperEntity extends BaseTimeEntity{
 
     private LocalDateTime openDate;

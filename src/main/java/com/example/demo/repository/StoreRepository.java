@@ -8,9 +8,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -95,4 +95,18 @@ public class StoreRepository {
 
         return jpaQueryFactory.selectFrom(qStore).where(builder).orderBy(qStore.storeCode.asc()).offset(startIndex).limit(size).leftJoin(qStore.location, location).fetchJoin().fetch();
     }
+
+    /**
+     * 점포코드로 점포 검색
+     * @param storeCode 점포코드
+     * @return Store
+     */
+    public Optional<Store> findByStoreCode(String storeCode) {
+        List<Store> storeList = em.createQuery("select s from Store s join fetch s.location where s.storeCode = :storeCode", Store.class)
+                .setParameter("storeCode", storeCode)
+                .getResultList();
+        return storeList.stream().findAny();
+
+    }
+
 }

@@ -3,14 +3,15 @@ package com.example.demo.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.locationtech.jts.geom.Point;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@SuperBuilder
 @ToString
 public class Store extends StoreAgencySuperEntity {
 
