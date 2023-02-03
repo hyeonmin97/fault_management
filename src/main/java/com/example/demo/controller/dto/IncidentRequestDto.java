@@ -1,8 +1,8 @@
 package com.example.demo.controller.dto;
 
-import com.example.demo.domain.IncidentType;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.locationtech.jts.geom.Point;
 import java.util.List;
 
 @Getter
@@ -17,11 +17,12 @@ public class IncidentRequestDto {
     private String StoreAddressDetail;
     private String managerName;
     private String managerPhone;
+    private Point point;
     private List<AgencyAndStoreDistanceDto> agencyAndStoreDistanceDtoList; // 점포-대리점 거리, 대리점 선택을 위한 데이터
     private List<IncidentHistoryDto>  incidentHistoryLIst; //과거 장애 내역
 
     @Builder
-    public IncidentRequestDto(String storeCode, String storeName, String storeTelephone, String storeAddress, String storeAddressDetail, String managerName, String managerPhone, List<AgencyAndStoreDistanceDto> agencyAndStoreDistanceDtoList, List<IncidentHistoryDto> incidentHistoryLIst) {
+    public IncidentRequestDto(String storeCode, String storeName, String storeTelephone, String storeAddress, String storeAddressDetail, String managerName, String managerPhone, List<AgencyAndStoreDistanceDto> agencyAndStoreDistanceDtoList, List<IncidentHistoryDto> incidentHistoryLIst, Point point) {
         this.storeCode = storeCode;
         this.storeName = storeName;
         this.storeTelephone = storeTelephone;
@@ -31,5 +32,6 @@ public class IncidentRequestDto {
         this.managerPhone = managerPhone;
         this.agencyAndStoreDistanceDtoList = agencyAndStoreDistanceDtoList;
         this.incidentHistoryLIst = incidentHistoryLIst;
+        this.point = point;
     }
 }
