@@ -103,6 +103,7 @@ public class StoreService {
                 .managerPhone(store.getManagerPhone())
                 .agencyAndStoreDistanceDtoList(agencyAndStoreDistanceDtoList)
                 .incidentHistoryLIst(incidentHistoryDtoList)
+                .point(storePoint)
                 .build();
     }
 
