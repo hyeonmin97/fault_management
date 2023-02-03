@@ -2,14 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.IncidentRequestDto;
 import com.example.demo.controller.dto.StoreListDto;
-import com.example.demo.domain.IncidentType;
+import com.example.demo.repository.IncidentTypeComponent;
 import com.example.demo.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class StoreController {
 
     private final StoreService storeService;
+    private final IncidentTypeComponent incidentTypeComponent;
     private static final int STORES_SIZE = 50;
 
     @GetMapping("/list")
@@ -64,7 +67,12 @@ public class StoreController {
     @GetMapping("/{storeCode}/incident")
     public String getIncident(@PathVariable String storeCode, Model model) {
 
+        Map<String, Map> incidentTypeMap = incidentTypeComponent.getIncidentTypeMap();
+
+        //장애 추가 페이지에 필요한 정보 저장
         IncidentRequestDto incidentRequestDto = storeService.incidentRequestData(storeCode);
+
+        model.addAttribute("incidentType", incidentTypeMap);
         model.addAttribute("incidentRequestDto", incidentRequestDto);
 
         return "/stores/addIncident";
