@@ -154,9 +154,20 @@
         <!--장애 정보 추가 폼-->
         <div class="container w-75 bg-dark bg-opacity-10 p-5">
             <form th:action="|/stores/${incidentRequestDto.getStoreCode()}/incident|" method="post" onsubmit="return submitCheck()">
+                <!--전화한 고객 이름-->
+                <div class="w-50">
+                    <span class="fs-4 mb-2 d-block">고객 이름</span>
+                    <input class="form-control" name="customerName" type="text">
+                </div>
+
+                <!--전화한 고객 전화번호-->
+                <div class="d-block my-5 w-50">
+                    <span class="fs-4 mb-2 d-block">고객 전화번호</span>
+                    <input class="form-control" name="customerPhone" type="tel">
+                </div>
 
                 <!--장애유형-->
-                <span class="d-block fs-4 mb-2">장애 유형</span>
+                <span class="d-block fs-4">장애 유형</span>
                 <div>
                     <select class="form-select w-25 d-inline p-2 " id="largeType"></select>
                     <select class="form-select w-25 d-inline p-2 " id="mediumType"></select>
