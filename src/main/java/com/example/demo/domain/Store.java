@@ -22,7 +22,7 @@ public class Store extends StoreAgencySuperEntity {
     private String storeCode;
 
 
-    private LocalDateTime inspectionDataLast;
+    private LocalDateTime inspectionDateLast;
     private LocalDateTime inspectionDateNext;
 
     @Enumerated(EnumType.STRING)
