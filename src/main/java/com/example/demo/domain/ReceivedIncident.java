@@ -1,7 +1,9 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +11,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @ToString
+@SuperBuilder
+@NoArgsConstructor
 public class ReceivedIncident extends BaseTimeEntity {
 
     @Id

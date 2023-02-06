@@ -1,12 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.AddIncidentDto;
 import com.example.demo.controller.dto.IncidentRequestDto;
 import com.example.demo.controller.dto.StoreListDto;
+import com.example.demo.domain.ProcessMethod;
+import com.example.demo.domain.ReceivedIncident;
 import com.example.demo.repository.IncidentTypeComponent;
+import com.example.demo.service.ReceivedIncidentService;
 import com.example.demo.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,7 @@ public class StoreController {
 
     private final StoreService storeService;
     private final IncidentTypeComponent incidentTypeComponent;
+    private final ReceivedIncidentService receivedIncidentService;
     private static final int STORES_SIZE = 50;
 
     @GetMapping("/list")
@@ -77,4 +81,14 @@ public class StoreController {
 
         return "/stores/addIncident";
     }
+
+    @PostMapping("/{storeCode}/incident")
+    public String addIncident(@PathVariable String storeCode, AddIncidentDto addIncidentDto) {
+        //ReceivedIncident 추가
+        addIncidentDto.setStoreCode(storeCode);
+        Long incidentId = receivedIncidentService.addIncident(addIncidentDto);
+
+        return "redirect:/incident/" + incidentId;
+    }
+
 }
