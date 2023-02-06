@@ -33,4 +33,8 @@ public class AgencyRepository {
     public void save(Agency agency) {
         em.persist(agency);
     }
+
+    public Optional<Agency> findByCode(String agencyCode) {
+        return em.createQuery("select a from Agency a where a.agencyCode = :agencyCode", Agency.class).setParameter("agencyCode", agencyCode).getResultStream().findAny();
+    }
 }

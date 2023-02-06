@@ -21,4 +21,8 @@ public class ReceivedIncidentRepository {
                 "join fetch r.store " +
                 "where r.store=:store order by r.createDate desc").setParameter("store", store).getResultList();
     }
+
+    public void save(ReceivedIncident receivedIncident) {
+        em.persist(receivedIncident);
+    }
 }
