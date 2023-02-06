@@ -23,7 +23,7 @@ public class ReceivedIncidentService {
     private final IncidentTypeRepository incidentTypeRepository;
 
     @Transactional
-    public Long addIncident(AddIncidentDto incidentDto) {
+    public void addIncident(AddIncidentDto incidentDto) {
 
         Store findStore = storeRepository.findByStoreCode(incidentDto.getStoreCode()).orElseThrow(()->new NoSuchElementException("점포가 없습니다."));
         IncidentType findIncidentType = incidentTypeRepository.find(incidentDto.getIncidentType()).orElseThrow(()->new NoSuchElementException("장애 타입이 없습니다."));
@@ -43,6 +43,5 @@ public class ReceivedIncidentService {
 
         receivedIncidentRepository.save(receivedIncident);
 
-        return receivedIncident.getId();
     }
 }

@@ -86,9 +86,9 @@ public class StoreController {
     public String addIncident(@PathVariable String storeCode, AddIncidentDto addIncidentDto) {
         //ReceivedIncident 추가
         addIncidentDto.setStoreCode(storeCode);
-        Long incidentId = receivedIncidentService.addIncident(addIncidentDto);
+        receivedIncidentService.addIncident(addIncidentDto);
 
-        return "redirect:/incident/" + incidentId;
+        return "redirect:/stores/" + storeCode;
     }
 
 }
