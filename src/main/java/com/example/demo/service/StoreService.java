@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.dto.AgencyAndStoreDistanceDto;
-import com.example.demo.controller.dto.IncidentHistoryDto;
-import com.example.demo.controller.dto.IncidentRequestDto;
-import com.example.demo.controller.dto.StoreListDto;
+import com.example.demo.controller.dto.*;
 import com.example.demo.domain.ReceivedIncident;
 import com.example.demo.domain.Store;
 import com.example.demo.domain.StoreAgencyStatus;
@@ -136,18 +133,33 @@ public class StoreService {
      */
     private List<IncidentHistoryDto> getIncidentHistoryDtoList(Store store) {
         List<ReceivedIncident> receivedIncidentList = receivedIncidentRepository.findByStore(store);
-        List<IncidentHistoryDto> incidentHistoryDtoList = receivedIncidentList.stream().map(receivedIncident -> IncidentHistoryDto.builder()
-                        .createDate(receivedIncident.getCreateDate())
-                        .completionDate(receivedIncident.getCompletionDate())
-                        .text(receivedIncident.getText())
-                        .agencyName(receivedIncident.getAgency().getName())
-                        .agencyCode(receivedIncident.getAgency().getAgencyCode())
-                        .engineerName(receivedIncident.getEngineer().getName())
-                        .engineerId(receivedIncident.getEngineer().getId())
-                        .processStatus(receivedIncident.getProcessStatus())
-                        .incidentType(receivedIncident.getIncidentType())
-                        .build())
-                .collect(Collectors.toList());
+        List<IncidentHistoryDto> incidentHistoryDtoList = receivedIncidentList.stream().map(receivedIncident -> {
+                    IncidentHistoryDto.IncidentHistoryDtoBuilder builder = IncidentHistoryDto.builder()
+                            .incidentId(receivedIncident.getId())
+                            .createDate(receivedIncident.getCreateDate())
+                            .completionDate(receivedIncident.getCompletionDate())
+                            .text(receivedIncident.getText())
+                            .agencyName(receivedIncident.getAgency().getName())
+                            .agencyCode(receivedIncident.getAgency().getAgencyCode())
+                            .processMethod(receivedIncident.getProcessMethod())
+                            .processStatus(receivedIncident.getProcessStatus())
+                            .incidentType(receivedIncident.getIncidentType())
+                            .customerName(receivedIncident.getCustomerName())
+                            .customerPhone(receivedIncident.getCustomerPhone())
+                            .isRegular(receivedIncident.getIsRegular())
+                            .employeeId(receivedIncident.getEmployee().getId())
+                            .employeeName(receivedIncident.getEmployee().getName());
+
+                    if (receivedIncident.getEngineer() != null) {
+                        builder.engineerName(receivedIncident.getEngineer().getName())
+                                .engineerId(receivedIncident.getEngineer().getId())
+                                .engineerStatus(receivedIncident.getEngineer().getEngineerStatus());
+                    }
+
+                    return builder.build();
+                }
+        ).collect(Collectors.toList());
+
         return incidentHistoryDtoList;
     }
 }
