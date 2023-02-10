@@ -16,7 +16,7 @@ public class ReceivedIncidentRepository {
         return em.createQuery("select r from ReceivedIncident r " +
                 "join fetch r.agency " +
                 "join fetch r.employee " +
-                "join fetch r.engineer " +
+                "left join fetch r.engineer " +
                 "join fetch r.incidentType " +
                 "join fetch r.store " +
                 "where r.store=:store order by r.createDate desc").setParameter("store", store).getResultList();
