@@ -2,9 +2,13 @@ package com.example.demo.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
+@ToString
+@Slf4j
 public class Paging {
     private boolean enablePrev;
     private boolean enableNext;
@@ -24,7 +28,7 @@ public class Paging {
         paging.setCurrentPage(currentPage);
         paging.setMaxSize(maxSize);
         paging.setEnablePrev(currentPage != 1);
-        paging.setEnableNext(currentPage <= maxSize);
+        paging.setEnableNext(currentPage < maxSize);
 
         if (currentPage <= 10) {
             paging.setStartPage(1);
@@ -37,6 +41,7 @@ public class Paging {
             paging.setEndPage(currentPage + 5);
         }
 
+        log.info("paging {} ", paging);
         return paging;
     }
 
