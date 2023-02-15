@@ -45,7 +45,7 @@
                         <li class="page-item" th:if="${number==paging.getCurrentPage()}" th:classappend="active">
                             <a class="page-link" href="#" th:href="@{list(page=${number})}" th:text="${number}">1</a>
                         </li>
-                        <li class="page-item" th:if="${number!=paging.getCurrentPage()}">
+                        <li class="page-item" th:if="${number!=paging.getCurrentPage()}" th:classappend="${number > paging.getMaxSize() ? 'disabled' : _}">
                             <a class="page-link" href="#" th:href="@{list(page=${number})}" th:text="${number}">1</a>
                         </li>
                     </th:block>
