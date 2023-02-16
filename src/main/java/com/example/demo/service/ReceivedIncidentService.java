@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Getter
 @Service
@@ -43,5 +44,12 @@ public class ReceivedIncidentService {
 
         receivedIncidentRepository.save(receivedIncident);
 
+    }
+
+    @Transactional(readOnly = true)
+    public int getMaxPage(String storeCode){
+        Store findStore = storeRepository.findByStoreCode(storeCode).orElseThrow(()->new NoSuchElementException("점포가 없습니다."));
+        Long size = receivedIncidentRepository.countByStoreCode(findStore);
+        return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
     }
 }

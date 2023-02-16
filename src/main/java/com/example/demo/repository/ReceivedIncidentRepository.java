@@ -5,6 +5,7 @@ import com.example.demo.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -13,16 +14,28 @@ public class ReceivedIncidentRepository {
     private final EntityManager em;
 
     public List<ReceivedIncident> findByStore(Store store) {
+        return getReceivedIncidentQuery().setParameter("store", store).getResultList();
+    }
+
+    public List<ReceivedIncident> findByStore(Store store, int startIndex, int size) {
+        return getReceivedIncidentQuery().setParameter("store", store).setFirstResult(startIndex).setMaxResults(size).getResultList();
+    }
+
+    private Query getReceivedIncidentQuery() {
         return em.createQuery("select r from ReceivedIncident r " +
                 "join fetch r.agency " +
                 "join fetch r.employee " +
                 "left join fetch r.engineer " +
                 "join fetch r.incidentType " +
                 "join fetch r.store " +
-                "where r.store=:store order by r.createDate desc").setParameter("store", store).getResultList();
+                "where r.store=:store order by r.createDate desc");
     }
 
     public void save(ReceivedIncident receivedIncident) {
         em.persist(receivedIncident);
+    }
+
+    public Long countByStoreCode(Store store) {
+        return em.createQuery("select count(r.id) from ReceivedIncident r where r.store=:store", Long.class).setParameter("store", store).getSingleResult();
     }
 }

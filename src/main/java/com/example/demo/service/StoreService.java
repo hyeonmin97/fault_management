@@ -70,6 +70,24 @@ public class StoreService {
     }
 
     /**
+     * 점포의 정보를 담은 StoreInfoDto 리턴
+     * @param storeCode 점포코드
+     * @param startPage 장애내역에 사용할 페이지
+     * @param size 장애내역 개수
+     * @return
+     */
+    public StoreInfoDto getStoreInfo(String storeCode, int startPage, int size) {
+        //1페이지면 0번째부터 불러오기
+        int startIndex = (startPage-1) * size;
+        //점포정보
+        Store findStore = storeRepository.findByStoreCode(storeCode).orElseThrow(()->new NoSuchElementException("점포가 없습니다."));
+        //과거 장애내역
+        List<IncidentHistoryDto> incidentHistoryDtoList = getIncidentHistoryDtoWithPagingList(findStore, startIndex, size);
+
+        return new StoreInfoDto(findStore, incidentHistoryDtoList);
+    }
+
+    /**
      * 점포 근처의 대리점 정보와 과거 장애 접수 내역을 IncidentRequestDto에 담아서 리턴
      * @param storeCode 점포코드
      * @return IncidentRequestDto
@@ -133,6 +151,19 @@ public class StoreService {
      */
     private List<IncidentHistoryDto> getIncidentHistoryDtoList(Store store) {
         List<ReceivedIncident> receivedIncidentList = receivedIncidentRepository.findByStore(store);
+        List<IncidentHistoryDto> incidentHistoryDtoList = getIncidentHistoryDtoList(receivedIncidentList);
+
+        return incidentHistoryDtoList;
+    }
+
+    private List<IncidentHistoryDto> getIncidentHistoryDtoWithPagingList(Store store, int startIndex, int size) {
+        List<ReceivedIncident> receivedIncidentList = receivedIncidentRepository.findByStore(store, startIndex, size);
+        List<IncidentHistoryDto> incidentHistoryDtoList = getIncidentHistoryDtoList(receivedIncidentList);
+
+        return incidentHistoryDtoList;
+    }
+
+    private static List<IncidentHistoryDto> getIncidentHistoryDtoList(List<ReceivedIncident> receivedIncidentList) {
         List<IncidentHistoryDto> incidentHistoryDtoList = receivedIncidentList.stream().map(receivedIncident -> {
                     IncidentHistoryDto.IncidentHistoryDtoBuilder builder = IncidentHistoryDto.builder()
                             .incidentId(receivedIncident.getId())

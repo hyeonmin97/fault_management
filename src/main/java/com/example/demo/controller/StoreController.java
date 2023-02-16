@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.AddIncidentDto;
 import com.example.demo.controller.dto.IncidentRequestDto;
+import com.example.demo.controller.dto.StoreInfoDto;
 import com.example.demo.controller.dto.StoreListDto;
 import com.example.demo.domain.ProcessMethod;
 import com.example.demo.domain.ReceivedIncident;
@@ -27,6 +28,7 @@ public class StoreController {
     private final IncidentTypeComponent incidentTypeComponent;
     private final ReceivedIncidentService receivedIncidentService;
     private static final int STORES_SIZE = 50;
+    private static final int INCIDENT_SIZE = 20;
 
     @GetMapping("/list")
     public String list(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -91,4 +93,18 @@ public class StoreController {
         return "redirect:/stores/" + storeCode;
     }
 
+    @GetMapping("/{storeCode}")
+    public String getStore(@PathVariable String storeCode, @RequestParam(defaultValue = "1")int page, Model model) {
+        //점포 장애내역 최대 페이지 조회
+        //페이지 객체 생성해서 추가
+        int maxPage = receivedIncidentService.getMaxPage(storeCode);
+
+        //Paging 객체 생성
+        Paging paging = Paging.of(maxPage, page);
+        model.addAttribute("paging", paging);
+
+        StoreInfoDto storeInfo = storeService.getStoreInfo(storeCode, page, INCIDENT_SIZE);
+        model.addAttribute("storeInfo", storeInfo);
+        return "/stores/storeInfo";
+    }
 }
