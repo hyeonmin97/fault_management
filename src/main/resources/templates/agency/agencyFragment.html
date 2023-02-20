@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<table th:fragment="table(list)" class="table table-sm">
+    <thead>
+    <tr>
+        <th>대리점 코드</th>
+        <th>대리점명</th>
+        <th>우편번호</th>
+        <th>주소</th>
+        <th>상세주소</th>
+        <th>매장 번호</th>
+        <th>팩스 번호</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${list}">
+        <td><a th:href="|/agency/${row.getAgencyCode()}|" href="#" class="link-info"><span th:text="${row.getAgencyCode()}">점포코드</span></a></td>
+        <td th:text="${row.getName()}">지점명</td>
+        <td th:text="${row.getPostalCode()}">우편번호</td>
+        <td th:text="${row.getAddress()}">주소</td>
+        <td th:text="${row.getAddressDetail()}">상세주소</td>
+        <td th:text="${row.getTelephone()}">매장 번호</td>
+        <td th:text="${row.getFax()}">팩스 번호</td>
+    </tr>
+    </tbody>
+</table>
+
+<form th:fragment="searchForm(type, keyword)" action="/agency/search" method="get">
+    <!-- 검색기능 추가  -->
+    <div class="w-75 input-group mb-5" >
+        <div class="w-25 input-group">
+            <label class="input-group-text" for="inputGroupSelect01">검색조건</label>
+            <select name="type" class="form-select" id="inputGroupSelect01">
+                <option th:each="value : ${T(com.example.demo.domain.searchType.SearchTypeAgency).values()}"
+                        th:value="${value.name()}" th:text="${value.getValue()}" th:selected="${value.name().equals(type)}">
+                </option>
+            </select>
+        </div>
+
+        <input th:value="${keyword}" name="keyword" type="text" class="form-control ms-2 me-2">
+
+        <button type="submit" class="btn btn-outline-dark">검색</button>
+    </div>
+</form>
+</body>
+</html>
