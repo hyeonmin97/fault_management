@@ -1,16 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.AgencyInfoDto;
 import com.example.demo.controller.dto.AgencyListDto;
 import com.example.demo.controller.dto.StoreListDto;
 import com.example.demo.domain.searchType.SearchTypeAgency;
 import com.example.demo.service.AgencyService;
+import com.example.demo.service.ReceivedIncidentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +20,9 @@ import java.util.Optional;
 public class AgencyController {
 
     private final AgencyService agencyService;
+    private final ReceivedIncidentService receivedIncidentService;
     private final int AGENCY_SIZE = 50;
+    private final int AGENCY_INCIDENT_HISTORY_SIZE = 50;
 
     @GetMapping("/list")
     public String agencyList(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -61,4 +62,20 @@ public class AgencyController {
 
         return "/agency/searchList";
     }
+
+    @GetMapping("/{agencyCode}")
+    public String getAgency(@PathVariable String agencyCode, @RequestParam(defaultValue = "1") int page, Model model){
+        //최대 페이지 수
+        int maxPage = receivedIncidentService.getAgencyMaxPage(agencyCode);
+
+        AgencyInfoDto agencyInfo = agencyService.getAgencyInfo(agencyCode, page, AGENCY_INCIDENT_HISTORY_SIZE);
+        model.addAttribute("agencyInfo", agencyInfo);
+
+        //Paging 객체 생성
+        Paging paging = Paging.of(maxPage, page);
+        model.addAttribute("paging", paging);
+
+        return "/agency/agencyInfo";
+    }
+
 }
