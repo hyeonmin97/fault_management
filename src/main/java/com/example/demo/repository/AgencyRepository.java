@@ -39,6 +39,10 @@ public class AgencyRepository {
         em.persist(agency);
     }
 
+    public Optional<Agency> findByAgencyCode(String agencyCode){
+        return em.createQuery("select a from Agency a where a.agencyCode = :agencyCode").setParameter("agencyCode", agencyCode).getResultList().stream().findAny();
+    }
+
     public Optional<Agency> findByCode(String agencyCode) {
         return em.createQuery("select a from Agency a where a.agencyCode = :agencyCode", Agency.class).setParameter("agencyCode", agencyCode).getResultStream().findAny();
     }
@@ -82,6 +86,11 @@ public class AgencyRepository {
             }
         }
         return builder;
+    }
+
+    public List<AgencyControl> findAgencyControlsWithAgency(Agency agency){
+
+        return em.createQuery("select a from AgencyControl a join fetch a.location where a.agency = :agency").setParameter("agency", agency).getResultList();
     }
 
 }

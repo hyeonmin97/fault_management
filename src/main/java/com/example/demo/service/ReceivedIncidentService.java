@@ -52,4 +52,11 @@ public class ReceivedIncidentService {
         Long size = receivedIncidentRepository.countByStoreCode(findStore);
         return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
     }
+
+    @Transactional(readOnly = true)
+    public int getAgencyMaxPage(String agencyCode){
+        Agency agency = agencyRepository.findByAgencyCode(agencyCode).orElseThrow(()->new NoSuchElementException("대리점이 없습니다."));
+        Long size = receivedIncidentRepository.countByAgency(agency);
+        return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
+    }
 }
