@@ -101,7 +101,7 @@
             </thead>
             <tbody>
             <tr th:each="engineer : ${agencyInfo.getEngineerList()}">
-                <td th:text="${engineer.getId()}">id</td>
+                <td><a th:href="|../engineer/${engineer.getId()}|" href="#" class="link-info"> <span th:text="${engineer.getId()}">id</span></a></td>
                 <td th:text="${engineer.getName()}">이름</td>
                 <td th:text="${engineer.getAge()}">나이</td>
                 <td th:text="${engineer.getPhone()}">전화번호</td>
