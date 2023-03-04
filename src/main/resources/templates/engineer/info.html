@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>점포 조회</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<!--전체 컨테이너-->
+<div class="container min-vw-100 w-100" >
+    <th:block th:object="${engineerInfoDto}">
+        <!-- 엔지니어 이름, 사진-->
+        <div class="container my-5 d-flex justify-content-center align-items-center">
+            <div class="" style="text-align: center">
+                <span class="fs-5" th:text="*{getAgencyName()}">센터명</span><br>
+                <span class="fs-2" th:text="*{getName()}">엔지니어명</span>
+            </div>
+            <div class="ms-5" style="width: 300px">
+                <img style="object-fit: cover" src="data:image/jpeg;base64,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">
+            </div>
+        </div>
+
+        <!-- 대리점 정보-->
+        <div class="container my-3 d-flex align-items-center">
+            <table class="table me-5">
+                <tbody>
+                    <tr>
+                        <th>아이디</th>
+                        <td th:text="*{getId()}">아이디</td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td th:text="*{getName()}">이름</td>
+                    </tr>
+                    <tr>
+                        <th>나이</th>
+                        <td th:text="*{getAge()}">나이</td>
+                    </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td th:text="*{getPhone()}">전화번호</td>
+                    </tr>
+                    <tr>
+                        <th>상태</th>
+                        <td th:text="*{getEngineerStatus().value}">상태</td>
+                    </tr>
+                    <tr>
+                        <th>소속 대리점 코드</th>
+                        <td th:text="*{getAgencyCode()}">소속 대리점 코드</td>
+                    </tr>
+                    <tr>
+                        <th>소속 대리점</th>
+                        <td th:text="*{getAgencyName()}">소속 대리점</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <!--날짜관련 테이블-->
+            <table class="table me-5">
+                <tbody>
+                    <tr>
+                        <th>생성일</th>
+                        <td th:text="*{getCreateDate()}">생성일</td>
+                    </tr>
+                    <tr>
+                        <th>업데이트일</th>
+                        <td th:text="*{getUpdateDate()}">업데이트일</td>
+                    </tr>
+                    <tr>
+                        <th>입사일</th>
+                        <td th:text="*{getJoinDate()}">입사일</td>
+                    </tr>
+                    <tr>
+                        <th>퇴직일</th>
+                        <td th:text="*{getResignationDate()}">퇴직일</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--  과거 장애내역  -->
+        <div class="container mt-5 w-100">
+            <span class="fs-2">최근 장애내역</span>
+        </div>
+
+        <div class="container my-3 min-vw-100 w-100">
+            <table class="table fs-6">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>접수일</th>
+                    <th>완료일</th>
+                    <th>처리방법</th>
+                    <th>처리상태</th>
+                    <th>장애타입</th>
+                    <th>고객이름</th>
+                    <th>고객전화번호</th>
+                    <th>특이사항</th>
+                    <th>대리점 코드</th>
+                    <th>대리점 이름</th>
+                    <th>엔지니어 아이디</th>
+                    <th>엔지니어 이름</th>
+                    <th>엔지니어 상태</th>
+                    <!--                <th>정기점검 여부</th>-->
+                    <th>담당직원 id</th>
+                    <th>담당직원 이름</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="incident : ${engineerInfoDto.getIncidentHistoryDtoList()}">
+                    <td th:text="${incident.getIncidentId()}">id</td>
+                    <td th:text="${#temporals.format(incident.getCreateDate(), 'yyyy-MM-dd HH:mm')}">접수일</td>
+                    <td th:text="${#temporals.format(incident.getCompletionDate(), 'yyyy-MM-dd HH:mm')}">완료일</td>
+                    <td th:text="${incident.getProcessMethod().getValue()}">처리방법</td>
+                    <td th:text="${incident.getProcessStatus().getValue()}">처리상태</td>
+                    <td th:text="${incident.getIncidentType().getLarge() + ' / ' + incident.getIncidentType().getMedium() + ' / ' + incident.getIncidentType().getSmall()}">장애타입</td>
+                    <td th:text="${incident.getCustomerName()}">고객이름</td>
+                    <td th:text="${incident.getCustomerPhone()}">고객전화번호</td>
+                    <td th:text="${incident.getText()}">특이사항</td>
+                    <td th:text="${incident.getAgencyCode()}">대리점 코드</td>
+                    <td th:text="${incident.getAgencyName()}">대리점 이름</td>
+                    <td th:text="${incident.getEngineerId()}">엔지니어 아이디</td>
+                    <td th:text="${incident.getEngineerName()}">엔지니어 이름</td>
+                    <td th:text="${incident.getEngineerStatus()}">엔지니어 상태</td>
+                    <!--                    <td th:text="${incident.get}">정기점검 여부</td>-->
+                    <td th:text="${incident.getEmployeeId()}">담당직원 id</td>
+                    <td th:text="${incident.getEmployeeName()}">담당직원 이름</td>
+                </tr>
+                </tbody>
+
+            </table>
+
+            <div style="text-align: center">
+                <div style="display: inline-block">
+                    <!--하단 네비게이션-->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+
+                            <th:block>
+                                <li class="page-item" th:classappend="${!paging.isEnablePrev() ? 'disabled' : _}">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=1)}" aria-label="First">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+
+                                <li class="page-item" th:classappend="${!paging.isEnablePrev() ? 'disabled' : _}">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=${paging.getCurrentPage()}-1)}" aria-label="Previous">
+                                        <span aria-hidden="true">&lt;</span>
+                                    </a>
+                                </li>
+                            </th:block>
+
+                            <th:block th:each="number:${#numbers.sequence(paging.getStartPage(), paging.getEndPage())}">
+                                <li class="page-item" th:if="${number==paging.getCurrentPage()}" th:classappend="active">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=${number})}" th:text="${number}">1</a>
+                                </li>
+                                <li class="page-item" th:if="${number!=paging.getCurrentPage()}" th:classappend="${number > paging.getMaxSize() ? 'disabled' : _}">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=${number})}" th:text="${number}">1</a>
+                                </li>
+                            </th:block>
+
+                            <th:block>
+                                <li class="page-item" th:classappend="${!paging.isEnableNext() ? 'disabled' : _}">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=${paging.getCurrentPage()}+1)}" aria-label="Next">
+                                        <span aria-hidden="true">&gt;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:classappend="${!paging.isEnableNext() ? 'disabled' : _}">
+                                    <a class="page-link" href="#" th:href="@{{engineerId}(engineerId=${engineerInfoDto.getId()}, page=${paging.getMaxSize()})}" aria-label="End">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </th:block>
+
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>
