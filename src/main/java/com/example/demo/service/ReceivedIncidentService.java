@@ -2,10 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.AddIncidentDto;
 import com.example.demo.domain.*;
-import com.example.demo.repository.AgencyRepository;
-import com.example.demo.repository.IncidentTypeRepository;
-import com.example.demo.repository.ReceivedIncidentRepository;
-import com.example.demo.repository.StoreRepository;
+import com.example.demo.repository.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,7 @@ public class ReceivedIncidentService {
     private final StoreRepository storeRepository;
     private final AgencyRepository agencyRepository;
     private final IncidentTypeRepository incidentTypeRepository;
+    private final EngineerRepository engineerRepository;
 
     @Transactional
     public void addIncident(AddIncidentDto incidentDto) {
@@ -57,6 +55,13 @@ public class ReceivedIncidentService {
     public int getAgencyMaxPage(String agencyCode){
         Agency agency = agencyRepository.findByAgencyCode(agencyCode).orElseThrow(()->new NoSuchElementException("대리점이 없습니다."));
         Long size = receivedIncidentRepository.countByAgency(agency);
+        return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
+    }
+    
+    @Transactional(readOnly = true)
+    public int getEngineerMaxPage(Long id){
+        Engineer engineer = engineerRepository.find(id).orElseThrow(()->new NoSuchElementException("대리점이 없습니다."));
+        Long size = receivedIncidentRepository.countByEngineer(engineer);
         return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
     }
 }

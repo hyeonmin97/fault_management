@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.Agency;
+import com.example.demo.domain.Engineer;
 import com.example.demo.domain.ReceivedIncident;
 import com.example.demo.domain.Store;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,20 @@ public class ReceivedIncidentRepository {
                 .setMaxResults(size)
                 .getResultList();
     }
+    public List<ReceivedIncident> findByEngineer(Engineer engineer, int startIndex, int size){
+        return em.createQuery("select r from ReceivedIncident r " +
+                "join fetch r.agency " +
+                "join fetch r.employee " +
+                "join fetch r.engineer " +
+                "join fetch r.incidentType " +
+                "join fetch r.store " +
+                "where r.engineer = :engineer " +
+                "order by r.createDate desc")
+                .setParameter("engineer", engineer)
+                .setFirstResult(startIndex)
+                .setMaxResults(size)
+                .getResultList();
+    }
 
     public void save(ReceivedIncident receivedIncident) {
         em.persist(receivedIncident);
@@ -57,5 +72,9 @@ public class ReceivedIncidentRepository {
 
     public Long countByAgency(Agency agency) {
         return em.createQuery("select count(r.id) from ReceivedIncident r where r.agency=:agency", Long.class).setParameter("agency", agency).getSingleResult();
+    }
+
+    public Long countByEngineer(Engineer engineer) {
+        return em.createQuery("select count(r.id) from ReceivedIncident r where r.engineer=:engineer", Long.class).setParameter("engineer", engineer).getSingleResult();
     }
 }
