@@ -1,5 +1,8 @@
 spring:
   mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
     view:
      prefix : /WEB-INF/jsp/
      suffix : .jsp

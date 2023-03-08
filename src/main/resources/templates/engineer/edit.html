@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>엔지니어 정보 수정</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<!--전체 컨테이너-->
+<div class="container min-vw-100 w-100" >
+    <th:block th:object="${engineerInfoDto}">
+        <form th:action="edit" method="post">
+            <input type="hidden" name="_method" value="PATCH"/>
+
+            <!-- 엔지니어 이름, 사진-->
+            <div class="container my-5 d-flex justify-content-center align-items-center">
+                <div class="" style="text-align: center">
+                    <span class="fs-5" th:text="*{getAgencyName()}">센터명</span><br>
+                    <span class="fs-2" th:text="*{getName()}">엔지니어명</span>
+                </div>
+                <div class="ms-5" style="width: 300px">
+                    <img style="object-fit: cover" src="data:image/jpeg;base64,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">
+                </div>
+            </div>
+
+            <!-- 대리점 정보-->
+            <div class="container my-3 d-flex align-items-center">
+                <table class="table me-5">
+                    <tbody>
+                        <tr>
+                            <th>아이디</th>
+                            <td>
+                                <input type="hidden" name="id" value="아이디" th:value="*{getId()}">
+                                <input class="form-control form-control-plaintext" type="text" th:value="*{getId()}" name="id" value="아이디" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이름</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getName()}" name="name" value="이름">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>나이</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getAge()}" name="age" value="나이">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>전화번호</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getPhone()}" name="phone" value="전화번호">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상태</th>
+                            <td>
+                                <select name="engineerStatus" class="form-select" id="engineerStatus">
+                                    <option th:each="value : ${T(com.example.demo.domain.EngineerStatus).values()}"
+                                            th:value="${value.name()}" th:text="${value.getValue()}" th:selected="${value.name().equals(engineerInfoDto.getEngineerStatus().name())}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>소속 대리점 코드</th>
+                            <td>
+                                <input type="hidden" name="agencyCode" value="아이디" th:value="*{getAgencyCode()}">
+                                <input class="form-control form-control-plaintext" type="text" th:value="*{getAgencyCode()}" name="agencyCode" value="소속 대리점 코드" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>소속 대리점</th>
+                            <td>
+                                <input class="form-control form-control-plaintext" type="text" th:value="*{getAgencyName()}" value="소속 대리점" disabled>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <!--날짜관련 테이블-->
+                <table class="table me-5">
+                    <tbody>
+                        <tr>
+                            <th>생성일</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getCreateDate()}" value="생성일" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>업데이트일</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getUpdateDate()}" value="업데이트일" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>입사일</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getJoinDate()}" name="joinDate" value="입사일">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>퇴직일</th>
+                            <td>
+                                <input class="form-control" type="text" th:value="*{getResignationDate()}" name="resignationDate" value="퇴직일">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container" style="text-align: center">
+                    <button type="submit" class="btn btn-info">수정</button>
+            </div>
+        </form>
+    </th:block>
+</div>
+</body>
+</html>

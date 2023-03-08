@@ -28,4 +28,15 @@ public class Engineer extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "agency_id")
     private Agency agency;
+
+    //엔티티가 dto를 참조하지 않도록 하기 위해 매개변수로 넣었음
+    public void update(String name, String age, String phone, LocalDateTime joinDate, LocalDateTime resignationDate, EngineerStatus engineerStatus, Agency agency) {
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.joinDate = joinDate;
+        this.resignationDate = resignationDate;
+        this.engineerStatus = engineerStatus;
+        this.agency = agency;
+    }
 }
