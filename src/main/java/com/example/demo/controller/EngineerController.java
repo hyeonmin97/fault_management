@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.dto.EngineerInfoDto;
+import com.example.demo.controller.dto.PatchEngineerForm;
 import com.example.demo.service.EngineerService;
 import com.example.demo.service.ReceivedIncidentService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,20 @@ public class EngineerController {
         model.addAttribute("paging", paging);
 
         return "engineer/info";
+    }
+
+    @GetMapping("/{engineerId}/edit")
+    public String getEngineerEditPage(@PathVariable Long engineerId, Model model){
+        EngineerInfoDto engineerInfoDto = engineerService.getEngineerInfoDtoWithoutIncidentList(engineerId);
+        model.addAttribute("engineerInfoDto", engineerInfoDto);
+
+        return "engineer/edit";
+    }
+    @PatchMapping("/{engineerId}/edit")
+    public String patchEngineer(@PathVariable Long engineerId, PatchEngineerForm patchEngineerForm){
+        log.info("patchEngineer form {}", patchEngineerForm.toString());
+        engineerService.patchEngineerInfo(patchEngineerForm);
+        log.info("patchEngineer end");
+        return "redirect:/engineer/" + engineerId;
     }
 }
