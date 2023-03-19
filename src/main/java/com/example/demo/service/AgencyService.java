@@ -5,7 +5,6 @@ import com.example.demo.domain.*;
 import com.example.demo.repository.AgencyRepository;
 import com.example.demo.repository.EngineerRepository;
 import com.example.demo.repository.ReceivedIncidentRepository;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -136,6 +135,85 @@ public class AgencyService {
 
         return incidentHistoryDtoList;
     }
+
+    public AgencyHomeDto getAgencyHome(String agencyCode) {
+
+        Agency findAgency = agencyRepository.findByAgencyCode(agencyCode).orElseThrow(() -> new NoSuchElementException("대리점이 없습니다"));
+        List<Engineer> engineerList = engineerRepository.findEngineerWithAgencyCode(findAgency);
+
+        AgencyHomeDto agencyHomeDto = new AgencyHomeDto(findAgency.getName(), findAgency.getPoint());
+
+        //엔지니어 정보 다 불러오고 재직현황 계산
+        ArrayList<EngineerDto> engineerDtoList = new ArrayList<>();
+        int incumbentCount = 0;//재직자
+        int retireeCount = 0;//퇴사자
+        int year = LocalDateTime.now().getYear();//년
+
+        //EngineerDto생성
+        for (Engineer engineer : engineerList) {
+            EngineerDto engineerDto = EngineerDto.builder()
+                    .id(engineer.getId())
+                    .name(engineer.getName())
+                    .age(engineer.getAge())
+                    .phone(engineer.getPhone())
+                    .createDate(engineer.getCreateDate())
+                    .updateDate(engineer.getUpdateDate())
+                    .joinDate(engineer.getJoinDate())
+                    .resignationDate(engineer.getResignationDate())
+                    .engineerStatus(engineer.getEngineerStatus())
+                    .agencyCode(engineer.getAgency().getAgencyCode())
+                    .agencyName(engineer.getAgency().getName())
+                    .build();
+            engineerDtoList.add(engineerDto);
+
+            //재직중인지 확인
+            if (engineerDto.getEngineerStatus() == EngineerStatus.WORK)
+                incumbentCount++;
+            else
+                retireeCount++;
+
+            //SEARCH_YEARS 사이 입사자, 퇴사자 확인
+            if (engineerDto.getJoinDate() != null && engineerDto.getResignationDate() != null) {
+                int joinYearDiff = year - engineerDto.getJoinDate().getYear();
+                if (joinYearDiff < AgencyHomeDto.SEARCH_YEARS) {
+                    int index = AgencyHomeDto.SEARCH_YEARS - 1 - joinYearDiff;
+                    agencyHomeDto.getJoinCountArray()[index]++;
+                }
+
+                int resignationYearDiff = year - engineerDto.getResignationDate().getYear();
+                if (resignationYearDiff < AgencyHomeDto.SEARCH_YEARS) {
+                    int index = AgencyHomeDto.SEARCH_YEARS - 1 - resignationYearDiff;
+                    agencyHomeDto.getResignationCountArray()[index]++;
+                }
+            }
+        }
+
+        //입사자, 퇴사자 수 지정
+        agencyHomeDto.engineerDistribution(incumbentCount, retireeCount);
+        //엔지니어 추가
+        agencyHomeDto.getEngineerInfoDtoList().addAll(engineerDtoList);
+
+        //할당, 진행 장애목록은 새로운 쿼리로 다 불러와서 서버에서 나누기, 완료일이 지정되지 않았거나 엔지니어 할당이 되지 않은 것만 검색
+        //완료일이 지정되지 않은것 => 할당이나 진행중인것.
+        List<ReceivedIncident> unCompleteIncidentList = receivedIncidentRepository.findUnCompleteByAgency(findAgency);
+        for (ReceivedIncident receivedIncident : unCompleteIncidentList) {
+            IncidentHistoryDto incidentHistoryDto = getIncidentHistoryDto(receivedIncident);
+
+            //엔지니어 할당이 안되었다면
+            if(receivedIncident.getEngineer() == null)
+                agencyHomeDto.getWaitingIncidentList().add(incidentHistoryDto);//대기중
+            else
+                agencyHomeDto.getWorkingIncidentList().add(incidentHistoryDto);//진행중
+        }
+
+        //관리하는 점포
+        List<Store> managedStoreList = agencyRepository.findManagedStoreWithLocation(findAgency);
+        List<StoreCoordinate> StoreCoordinateList = managedStoreList.stream().map(store -> new StoreCoordinate(store)).collect(Collectors.toList());
+        agencyHomeDto.getStoreCoordinateList().addAll(StoreCoordinateList);
+
+        return agencyHomeDto;
+    }
+
     private IncidentHistoryDto getIncidentHistoryDto(ReceivedIncident receivedIncident) {
         IncidentHistoryDto.IncidentHistoryDtoBuilder builder = IncidentHistoryDto.builder()
                 .incidentId(receivedIncident.getId())

@@ -77,4 +77,18 @@ public class ReceivedIncidentRepository {
     public Long countByEngineer(Engineer engineer) {
         return em.createQuery("select count(r.id) from ReceivedIncident r where r.engineer=:engineer", Long.class).setParameter("engineer", engineer).getSingleResult();
     }
+
+    public List<ReceivedIncident> findUnCompleteByAgency(Agency agency) {
+        //완료되지 않은 장애 조회
+        return em.createQuery("select r from ReceivedIncident r " +
+                        "join fetch r.agency " +
+                        "join fetch r.employee " +
+                        "left join fetch r.engineer " +
+                        "join fetch r.incidentType " +
+                        "join fetch r.store " +
+                        "where r.agency = :agency and r.completionDate is null " +
+                        "order by r.createDate asc")
+                .setParameter("agency", agency)
+                .getResultList();
+    }
 }

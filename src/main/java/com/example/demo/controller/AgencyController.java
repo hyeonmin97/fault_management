@@ -1,22 +1,23 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.AgencyHomeDto;
 import com.example.demo.controller.dto.AgencyInfoDto;
 import com.example.demo.controller.dto.AgencyListDto;
-import com.example.demo.controller.dto.StoreListDto;
-import com.example.demo.domain.searchType.SearchTypeAgency;
 import com.example.demo.service.AgencyService;
 import com.example.demo.service.ReceivedIncidentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("agency")
+@Slf4j
 public class AgencyController {
 
     private final AgencyService agencyService;
@@ -78,4 +79,15 @@ public class AgencyController {
         return "/agency/agencyInfo";
     }
 
+    @GetMapping("/home/{agencyCode}")
+    public String getAgencyHome(@PathVariable String agencyCode, Model model){
+        AgencyHomeDto agencyHome = agencyService.getAgencyHome(agencyCode);
+
+        log.info("agencyHome : {}", agencyHome);
+
+        model.addAttribute("agencyHome", agencyHome);
+        model.addAttribute("year", LocalDateTime.now().getYear());
+        model.addAttribute("searchYears", AgencyHomeDto.SEARCH_YEARS);
+        return "agency/home";
+    }
 }
