@@ -129,34 +129,35 @@ public class AgencyService {
         return incidentHistoryDtoList;
     }
 
-    private static List<IncidentHistoryDto> getIncidentHistoryDtoList(List<ReceivedIncident> receivedIncidentList) {
-        List<IncidentHistoryDto> incidentHistoryDtoList = receivedIncidentList.stream().map(receivedIncident -> {
-                    IncidentHistoryDto.IncidentHistoryDtoBuilder builder = IncidentHistoryDto.builder()
-                            .incidentId(receivedIncident.getId())
-                            .createDate(receivedIncident.getCreateDate())
-                            .completionDate(receivedIncident.getCompletionDate())
-                            .text(receivedIncident.getText())
-                            .agencyName(receivedIncident.getAgency().getName())
-                            .agencyCode(receivedIncident.getAgency().getAgencyCode())
-                            .processMethod(receivedIncident.getProcessMethod())
-                            .processStatus(receivedIncident.getProcessStatus())
-                            .incidentType(receivedIncident.getIncidentType())
-                            .customerName(receivedIncident.getCustomerName())
-                            .customerPhone(receivedIncident.getCustomerPhone())
-                            .isRegular(receivedIncident.getIsRegular())
-                            .employeeId(receivedIncident.getEmployee().getId())
-                            .employeeName(receivedIncident.getEmployee().getName());
-
-                    if (receivedIncident.getEngineer() != null) {
-                        builder.engineerName(receivedIncident.getEngineer().getName())
-                                .engineerId(receivedIncident.getEngineer().getId())
-                                .engineerStatus(receivedIncident.getEngineer().getEngineerStatus());
-                    }
-
-                    return builder.build();
-                }
-        ).collect(Collectors.toList());
+    private List<IncidentHistoryDto> getIncidentHistoryDtoList(List<ReceivedIncident> receivedIncidentList) {
+        List<IncidentHistoryDto> incidentHistoryDtoList = receivedIncidentList.stream()
+                .map(receivedIncident -> getIncidentHistoryDto(receivedIncident))
+                .collect(Collectors.toList());
 
         return incidentHistoryDtoList;
+    }
+    private IncidentHistoryDto getIncidentHistoryDto(ReceivedIncident receivedIncident) {
+        IncidentHistoryDto.IncidentHistoryDtoBuilder builder = IncidentHistoryDto.builder()
+                .incidentId(receivedIncident.getId())
+                .createDate(receivedIncident.getCreateDate())
+                .completionDate(receivedIncident.getCompletionDate())
+                .text(receivedIncident.getText())
+                .agencyName(receivedIncident.getAgency().getName())
+                .agencyCode(receivedIncident.getAgency().getAgencyCode())
+                .processMethod(receivedIncident.getProcessMethod())
+                .processStatus(receivedIncident.getProcessStatus())
+                .incidentType(receivedIncident.getIncidentType())
+                .customerName(receivedIncident.getCustomerName())
+                .customerPhone(receivedIncident.getCustomerPhone())
+                .isRegular(receivedIncident.getIsRegular())
+                .employeeId(receivedIncident.getEmployee().getId())
+                .employeeName(receivedIncident.getEmployee().getName());
+
+        if (receivedIncident.getEngineer() != null) {
+            builder.engineerName(receivedIncident.getEngineer().getName())
+                    .engineerId(receivedIncident.getEngineer().getId())
+                    .engineerStatus(receivedIncident.getEngineer().getEngineerStatus());
+        }
+        return builder.build();
     }
 }
