@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.controller.dto.AgencyHomeDto;
 import com.example.demo.controller.dto.AgencyInfoDto;
 import com.example.demo.controller.dto.AgencyListDto;
+import com.example.demo.controller.dto.IncidentHistoryDto;
 import com.example.demo.service.AgencyService;
 import com.example.demo.service.ReceivedIncidentService;
 import lombok.RequiredArgsConstructor;
@@ -108,4 +109,20 @@ public class AgencyController {
         return "redirect:" + referer;
     }
 
+    //전체 장애 조회
+    @GetMapping("/home/{agencyCode}/incident")
+    public String getAgencyIncident(@RequestParam(defaultValue = "1") int page, @PathVariable String agencyCode, Model model){
+        model.addAttribute("agencyCode", agencyCode);
+
+        //최대 페이지 수
+        int maxPage = receivedIncidentService.getAgencyMaxPage(agencyCode);
+
+        List<IncidentHistoryDto> incidentHistory = agencyService.getIncidentHistory(agencyCode, page, AGENCY_INCIDENT_HISTORY_SIZE);
+        model.addAttribute("incidentHistory", incidentHistory);
+
+        //Paging 객체 생성
+        Paging paging = Paging.of(maxPage, page);
+        model.addAttribute("paging", paging);
+        return "agency/incident";
+    }
 }

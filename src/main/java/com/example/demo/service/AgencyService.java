@@ -243,4 +243,14 @@ public class AgencyService {
         }
         return builder.build();
     }
+
+    //대리점의 장애 내역만 불러오는 함수
+    public List<IncidentHistoryDto> getIncidentHistory(String agencyCode, int startPage, int size) {
+        //대리점이 처리한 장애 내역
+        //1페이지면 0번째부터 불러오기
+        Agency findAgency = agencyRepository.findByCode(agencyCode).orElseThrow(()->new NoSuchElementException("대리점이 없습니다."));
+        int startIndex = (startPage-1) * size;
+        return getIncidentHistoryDtoWithPagingList(findAgency, startIndex, size);
+    }
+
 }
