@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<th:block th:fragment="engineerAssignment(engineerList)">
+    <div class="modal fade" id="engineerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="/agency/engineerAssignment" method="post">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">엔지니어 선택</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table align-middle table-borderless">
+                            <thead>
+                            <tr>
+                                <th>아이디</th>
+                                <th>이름</th>
+                                <th>전화번호</th>
+                                <th>할당</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--  재직중인 사람만 출력      -->
+                            <tr th:each="engineer : ${engineerList}"
+                                th:if="${engineer.getEngineerStatus() == T(com.example.demo.domain.EngineerStatus).WORK}">
+                                <td th:text="${engineer.getName()}">이름</td>
+                                <td th:text="${engineer.getAge()}">나이</td>
+                                <td th:text="${engineer.getPhone()}">전화번호</td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary selectButton" th:id="${engineer.getId()}"
+                                        th:onclick="engineerClick(this.id)">엔지니어 선택
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-primary">선택완료</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" class="incidentId" id="incidentId" name="incidentId">
+            <input type="hidden" id="engineerId" name="engineerId">
+        </form>
+    </div>
+</th:block>
+</body>
+
+</html>

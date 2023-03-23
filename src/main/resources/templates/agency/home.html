@@ -63,11 +63,48 @@
                 <td th:text="${incident.getCustomerPhone()}">고객전화번호</td>
                 <td class="note text-break" th:text="${incident.getText()}">특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항특이사항 특이사항특이사항</td>
                 <!--                    <td th:text="${incident.get}">정기점검 여부</td>-->
-                <td><a><button type="button" class="btn btn-primary">엔지니어 할당</button></a></td>
+                <td><a><button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#engineerModal" th:attr="data-bs-id=${incident.getIncidentId()}">엔지니어 할당</button></a></td>
             </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- Modal -->
+    <th:block th:replace="~{/modal/engineerAssignment :: engineerAssignment(*{getEngineerInfoDtoList()})}"></th:block>
+
+    <script>
+        //modal창에 선택한 장애의 id를 전달
+        const engineerInput = document.getElementById('engineerId')
+        const engineerModal = document.getElementById('engineerModal')
+        const incidentInput = document.getElementById('incidentId')
+        const engineerButtons = document.getElementsByClassName("selectButton")
+
+        //모달창 꺼지면 값 초기화
+        engineerModal.addEventListener('hide.bs.modal', event=>{
+            //버튼 색 초기화
+            for (let i = 0; i < engineerButtons.length; i++) {
+                engineerButtons[i].classList.remove("btn-primary")
+                engineerButtons[i].classList.add("btn-secondary")
+            }
+
+            //모달의 form에 있는 hidden input 값 초기화
+            engineerInput.value = "";
+            incidentInput.value = "";
+        })
+
+        //모달창 켜지면 값 설정
+        engineerModal.addEventListener('show.bs.modal', event => {
+            //클릭한 장애 버튼 저장
+            const button = event.relatedTarget
+
+            //버튼에 있는 장애 아이디 값 저장
+            const incidentId = button.getAttribute('data-bs-id')
+
+            //모달창의 incidentId에 값 저장
+            incidentInput.value = incidentId;
+        })
+    </script>
+
 
 
     <div style="min-width: 800px;" class="container mt-5 w-100">
@@ -203,6 +240,26 @@
         </table>
     </div>
 </div>
+
+<!-- 엔지니어 선택 관련 스크립트 -->
+<script>
+    <!--선택한 엔지니어의 값을 저장, 표시하는 함수-->
+    function engineerClick(clickedId) {
+        var engineerButtons = document.getElementsByClassName("selectButton")
+        var engineerInput = document.getElementById("engineerId")
+        console.log(" engineerClick  :  ",clickedId)
+        for (var i=0; i< engineerButtons.length; i++) {
+            if (engineerButtons[i].id == clickedId) {
+                engineerButtons[i].classList.add("btn-primary")
+                engineerButtons[i].classList.remove("btn-secondary")
+            }else{
+                engineerButtons[i].classList.add("btn-secondary")
+                engineerButtons[i].classList.remove("btn-primary")
+            }
+        }
+        engineerInput.value = clickedId;
+    }
+</script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     var agencyDto = [[${agencyHome}]];
