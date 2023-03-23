@@ -15,6 +15,10 @@ import java.util.List;
 public class ReceivedIncidentRepository {
     private final EntityManager em;
 
+    public ReceivedIncident find(long id) {
+        return em.find(ReceivedIncident.class, id);
+    }
+    
     public List<ReceivedIncident> findByStore(Store store) {
         return getReceivedIncidentQuery().setParameter("store", store).getResultList();
     }

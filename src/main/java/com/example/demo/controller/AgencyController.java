@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -90,4 +92,18 @@ public class AgencyController {
         model.addAttribute("searchYears", AgencyHomeDto.SEARCH_YEARS);
         return "agency/home";
     }
+
+    @PostMapping("/engineerAssignment")
+    public String assignmentIncident(HttpServletRequest request, @RequestParam long incidentId, @RequestParam long engineerId) {
+
+        receivedIncidentService.assigmentEngineer(incidentId, engineerId);
+        String referer = request.getHeader("Referer");
+        log.info("referer {}", referer);
+        log.info("incidentId {} ", incidentId);
+        log.info("engineerId {} ", engineerId);
+        
+        //TODO(대리점 권한 홈페이지로 이동, referer방식이 아닌 다른방식으로 이동해보기)
+        return "redirect:" + referer;
+    }
+
 }

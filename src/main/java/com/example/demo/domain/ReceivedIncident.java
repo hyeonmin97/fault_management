@@ -58,6 +58,9 @@ public class ReceivedIncident extends BaseTimeEntity {
 
     private Boolean isRegular;
 
-
+    public void assignmentEngineer(Engineer engineer) {
+        this.engineer = engineer;
+        this.engineerAssignmentDate = LocalDateTime.now();
+    }
 
 }
