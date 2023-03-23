@@ -136,7 +136,7 @@ public class AgencyService {
         return incidentHistoryDtoList;
     }
 
-    public AgencyHomeDto getAgencyHome(String agencyCode) {
+    public AgencyHomeDto getAgencyHome(String agencyCode, int incidentSize) {
 
         Agency findAgency = agencyRepository.findByAgencyCode(agencyCode).orElseThrow(() -> new NoSuchElementException("대리점이 없습니다"));
         List<Engineer> engineerList = engineerRepository.findEngineerWithAgencyCode(findAgency);
@@ -205,6 +205,11 @@ public class AgencyService {
             else
                 agencyHomeDto.getWorkingIncidentList().add(incidentHistoryDto);//진행중
         }
+
+        //최근 완료한 장애목록 추가
+        List<ReceivedIncident> someCompletedByAgency = receivedIncidentRepository.findSomeCompletedByAgency(findAgency, incidentSize);
+        List<IncidentHistoryDto> someIncidentHistoryDtoList = getIncidentHistoryDtoList(someCompletedByAgency);
+        agencyHomeDto.getRecentlyCompletedIncidentList().addAll(someIncidentHistoryDtoList);
 
         //관리하는 점포
         List<Store> managedStoreList = agencyRepository.findManagedStoreWithLocation(findAgency);

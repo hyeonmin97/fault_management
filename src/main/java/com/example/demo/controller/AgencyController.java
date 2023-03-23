@@ -83,10 +83,12 @@ public class AgencyController {
 
     @GetMapping("/home/{agencyCode}")
     public String getAgencyHome(@PathVariable String agencyCode, Model model){
-        AgencyHomeDto agencyHome = agencyService.getAgencyHome(agencyCode);
+        final int someCompletedSize = 5;
+        AgencyHomeDto agencyHome = agencyService.getAgencyHome(agencyCode, someCompletedSize);
 
         log.info("agencyHome : {}", agencyHome);
 
+        model.addAttribute("agencyCode", agencyCode);
         model.addAttribute("agencyHome", agencyHome);
         model.addAttribute("year", LocalDateTime.now().getYear());
         model.addAttribute("searchYears", AgencyHomeDto.SEARCH_YEARS);

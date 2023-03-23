@@ -21,6 +21,7 @@ public class AgencyHomeDto {
     private int[] joinCountArray;//연도별 입사자 수
     private List<EngineerDto> engineerInfoDtoList = new ArrayList<>();//전체 엔지니어 정보
     private List<StoreCoordinate> storeCoordinateList = new ArrayList<>(); //관리 점포 정보
+    private List<IncidentHistoryDto> recentlyCompletedIncidentList = new ArrayList<>(); //최근 장애목록
     private List<IncidentHistoryDto> waitingIncidentList = new ArrayList<>();//할당 대기중인 장애목록
     private List<IncidentHistoryDto> workingIncidentList = new ArrayList<>();//진행중인 장애목록
 
