@@ -15,6 +15,9 @@ public class EngineerRepository {
 
     private final EntityManager em;
 
+    public void create(Engineer engineer) {
+        em.persist(engineer);
+    }
     public List<Engineer> findEngineerWithAgencyCode(Agency agency){
         return em.createQuery("select e from Engineer e join fetch e.agency where e.agency = :agency").setParameter("agency", agency).getResultList();
     }

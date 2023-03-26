@@ -203,6 +203,7 @@
     <!--    엔지니어 리스트-->
     <div style="min-width: 800px;" class="container mt-5 w-100">
         <span class="fs-4">소속 엔지니어</span>
+        <a class="link-info fs-6 ms-3" href="#" th:href="|/engineer/${agencyCode}/add|"><span>등록</span></a>
         <table class="table fs-6 align-middle mt-3">
             <thead>
             <tr>
@@ -217,7 +218,7 @@
             </thead>
             <tbody>
                 <tr th:each="engineer : *{getEngineerInfoDtoList()}">
-                    <td><a th:href="|../engineer/${engineer.getId()}|" href="#" class="link-info"> <span th:text="${engineer.getId()}">id</span></a></td>
+                    <td><a th:href="|/engineer/${engineer.getId()}|" href="#" class="link-info"> <span th:text="${engineer.getId()}">id</span></a></td>
                     <td th:text="${engineer.getName()}">이름</td>
                     <td th:text="${engineer.getAge()}">나이</td>
                     <td th:text="${engineer.getPhone()}">전화번호</td>

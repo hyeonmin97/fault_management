@@ -97,4 +97,8 @@ public class AgencyRepository {
         //select * from store where location_id in (select location_id from agency_control where agency_id = 17);
         return em.createQuery("select s from Store s join fetch s.location where s.location in (select ac.location from AgencyControl as ac where ac.agency = :agency)").setParameter("agency", agency).getResultList();
     }
+
+    public Agency findById(Long id) {
+        return em.find(Agency.class, id);
+    }
 }
