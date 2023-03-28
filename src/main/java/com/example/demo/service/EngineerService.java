@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.dto.AddEngineerDto;
 import com.example.demo.controller.dto.EngineerInfoDto;
 import com.example.demo.controller.dto.IncidentHistoryDto;
 import com.example.demo.controller.dto.PatchEngineerForm;
 import com.example.demo.domain.Agency;
 import com.example.demo.domain.Engineer;
+import com.example.demo.domain.EngineerStatus;
 import com.example.demo.domain.ReceivedIncident;
 import com.example.demo.repository.AgencyRepository;
 import com.example.demo.repository.EngineerRepository;
@@ -13,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -106,5 +110,23 @@ public class EngineerService {
         Engineer engineer = engineerRepository.find(patchEngineerForm.getId()).orElseThrow(() -> new NoSuchElementException("엔지니어가 없습니다."));
         Agency agency = agencyRepository.findByAgencyCode(patchEngineerForm.getAgencyCode()).orElseThrow(() -> new NoSuchElementException("대리점이 없습니다."));
         engineer.update(patchEngineerForm.getName(), patchEngineerForm.getAge(), patchEngineerForm.getPhone(), patchEngineerForm.getJoinDate(), patchEngineerForm.getResignationDate(), patchEngineerForm.getEngineerStatus(), agency);
+    }
+
+    @Transactional
+    public Long addEngineer(AddEngineerDto engineerDto) {
+        //대리점 조회
+        Agency agency = agencyRepository.findById(engineerDto.getAgencyId());
+
+        //엔지니어 엔티티 생성
+        Engineer engineer = Engineer.builder()
+                .name(engineerDto.getName())
+                .phone(engineerDto.getPhone())
+                .age(String.valueOf(engineerDto.getAge()))
+                .joinDate(LocalDateTime.of(engineerDto.getJoinDate(), LocalTime.now()))
+                .engineerStatus(EngineerStatus.WORK)
+                .agency(agency)
+                .build();
+        engineerRepository.create(engineer);
+        return engineer.getId();
     }
 }

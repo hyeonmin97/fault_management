@@ -64,4 +64,17 @@ public class ReceivedIncidentService {
         Long size = receivedIncidentRepository.countByEngineer(engineer);
         return (int)(size % 50 ==0 ? size/50 : size/50 + 1);
     }
+
+    @Transactional
+    public void assigmentEngineer(long incidentId, long engineerId) {
+        ReceivedIncident findIncident = receivedIncidentRepository.find(incidentId);
+        Engineer findEngineer = engineerRepository.find(engineerId).orElseThrow(() -> new NoSuchElementException("엔지니어가 없습니다."));
+
+        //엔지니어, 장애의 점포  비교
+        //엔지니어의 대리점과, 장애의 대리점이 같으면 엔지니어 지정 가능
+        if (findEngineer.getAgency().equals(findIncident.getAgency())) {
+            findIncident.assignmentEngineer(findEngineer);
+        }
+
+    }
 }
