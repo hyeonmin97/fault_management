@@ -28,7 +28,7 @@ public class EngineerController {
 
     private final int ENGINEER_INCIDENT_HISTORY_SIZE = 20;
 
-    @GetMapping("/{engineerId}")
+    @GetMapping("/{engineerId}/info")
     public String getEngineer(@PathVariable Long engineerId, @RequestParam(defaultValue = "1") int page, Model model) {
         int maxPage = receivedIncidentService.getEngineerMaxPage(engineerId);
 
@@ -54,7 +54,7 @@ public class EngineerController {
         log.info("patchEngineer form {}", patchEngineerForm.toString());
         engineerService.patchEngineerInfo(patchEngineerForm);
         log.info("patchEngineer end");
-        return "redirect:/engineer/" + engineerId;
+        return "redirect:/engineer/" + engineerId + "/info";
     }
 
     //엔지니어 추가 폼
@@ -69,9 +69,9 @@ public class EngineerController {
     }
 
     //엔지니어 추가
-    @PostMapping("/add")
+    @PostMapping("/{agencyCode}/add")
     public String addEngineer(AddEngineerDto addEngineerDto) {
         Long engineerId = engineerService.addEngineer(addEngineerDto);
-        return "redirect:/engineer/" + engineerId;
+        return "redirect:/engineer/" + engineerId + "/info";
     }
 }
