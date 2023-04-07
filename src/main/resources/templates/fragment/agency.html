@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <tr th:each="row : ${list}">
-        <td><a th:href="|/agency/${row.getAgencyCode()}|" href="#" class="link-info"><span th:text="${row.getAgencyCode()}">점포코드</span></a></td>
+        <td><a th:href="|/agency/${row.getAgencyCode()}/info|" href="#" class="link-info"><span th:text="${row.getAgencyCode()}">점포코드</span></a></td>
         <td th:text="${row.getName()}">지점명</td>
         <td th:text="${row.getPostalCode()}">우편번호</td>
         <td th:text="${row.getAddress()}">주소</td>

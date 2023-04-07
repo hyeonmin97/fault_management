@@ -19,7 +19,7 @@
         </thead>
         <tbody>
             <tr th:each="row : ${list}">
-                <td><a th:href="|/stores/${row.getStoreCode()}|" href="#" class="link-info"><span th:text="${row.getStoreCode()}">점포코드</span></a></td>
+                <td><a th:href="|/stores/${row.getStoreCode()}/info|" href="#" class="link-info"><span th:text="${row.getStoreCode()}">점포코드</span></a></td>
                 <td th:text="${row.getHeadOfficeCode()}">지역</td>
                 <td th:text="${row.getName()}">점포명</td>
                 <td th:text="${row.getTelephone()}">매장 전화번호</td>

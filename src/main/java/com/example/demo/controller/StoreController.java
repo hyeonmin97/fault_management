@@ -90,10 +90,10 @@ public class StoreController {
         addIncidentDto.setStoreCode(storeCode);
         receivedIncidentService.addIncident(addIncidentDto);
 
-        return "redirect:/stores/" + storeCode;
+        return "redirect:/stores/" + storeCode + "/info";
     }
 
-    @GetMapping("/{storeCode}")
+    @GetMapping("/{storeCode}/info")
     public String getStore(@PathVariable String storeCode, @RequestParam(defaultValue = "1")int page, Model model) {
         //점포 장애내역 최대 페이지 조회
         //페이지 객체 생성해서 추가

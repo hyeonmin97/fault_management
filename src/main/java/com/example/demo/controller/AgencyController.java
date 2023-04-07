@@ -67,7 +67,7 @@ public class AgencyController {
         return "/agency/searchList";
     }
 
-    @GetMapping("/{agencyCode}")
+    @GetMapping("/{agencyCode}/info")
     public String getAgency(@PathVariable String agencyCode, @RequestParam(defaultValue = "1") int page, Model model){
         //최대 페이지 수
         int maxPage = receivedIncidentService.getAgencyMaxPage(agencyCode);

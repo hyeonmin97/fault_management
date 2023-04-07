@@ -8,104 +8,30 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+
+    .incidentTable tr,td{
+      text-align: center;
+    }
+    .note{
+      width: 200px;
+      max-width: 200px;
+    }
+  </style>
 </head>
 <body>
 <!--전체 컨테이너-->
 <div class="container min-vw-100 w-100" >
+
   <!--  과거 장애내역  -->
-  <div class="container mt-5 w-100">
-    <span class="fs-2">전체 장애내역</span>
-  </div>
-  <div class="container my-3 min-vw-100 w-100">
-    <table class="table fs-6">
-      <thead>
-      <tr>
-        <th>id</th>
-        <th>접수일</th>
-        <th>완료일</th>
-        <th>처리방법</th>
-        <th>처리상태</th>
-        <th>장애타입</th>
-        <th>고객이름</th>
-        <th>고객전화번호</th>
-        <th>특이사항</th>
-        <th>엔지니어 아이디</th>
-        <th>엔지니어 이름</th>
-        <th>엔지니어 상태</th>
-        <!--                <th>정기점검 여부</th>-->
-        <th>담당직원 id</th>
-        <th>담당직원 이름</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="incident : ${incidentHistory}">
-        <td th:text="${incident.getIncidentId()}">id</td>
-        <td th:text="${#temporals.format(incident.getCreateDate(), 'yyyy-MM-dd HH:mm')}">접수일</td>
-        <td th:text="${#temporals.format(incident.getCompletionDate(), 'yyyy-MM-dd HH:mm')}">완료일</td>
-        <td th:text="${incident.getProcessMethod().getValue()}">처리방법</td>
-        <td th:text="${incident.getProcessStatus().getValue()}">처리상태</td>
-        <td th:text="${incident.getIncidentType().getLarge() + ' / ' + incident.getIncidentType().getMedium() + ' / ' + incident.getIncidentType().getSmall()}">장애타입</td>
-        <td th:text="${incident.getCustomerName()}">고객이름</td>
-        <td th:text="${incident.getCustomerPhone()}">고객전화번호</td>
-        <td th:text="${incident.getText()}">특이사항</td>
-        <td th:text="${incident.getEngineerId()}">엔지니어 아이디</td>
-        <td th:text="${incident.getEngineerName()}">엔지니어 이름</td>
-        <td th:text="${incident.getEngineerStatus()}">엔지니어 상태</td>
-        <!--                    <td th:text="${incident.get}">정기점검 여부</td>-->
-        <td th:text="${incident.getEmployeeId()}">담당직원 id</td>
-        <td th:text="${incident.getEmployeeName()}">담당직원 이름</td>
-      </tr>
-      </tbody>
+  <div style="min-width: 1000px;" class="container mt-5 w-100">
+    <span class="fs-4">전체 장애목록</span>
+    <!--    장애목록 테이블    -->
+    <div th:replace="~{fragment/incident :: incidentTableWithoutAgencyId(${incidentHistory})}"></div>
 
-    </table>
-
-    <div style="text-align: center">
-      <div style="display: inline-block">
-        <!--하단 네비게이션-->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-
-            <th:block>
-              <li class="page-item" th:classappend="${!paging.isEnablePrev() ? 'disabled' : _}">
-                <a class="page-link" href="#" th:href="@{incident(page=1)}" aria-label="First">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-
-              <li class="page-item" th:classappend="${!paging.isEnablePrev() ? 'disabled' : _}">
-                <a class="page-link" href="#" th:href="@{incident(page=${paging.getCurrentPage()}-1)}" aria-label="Previous">
-                  <span aria-hidden="true">&lt;</span>
-                </a>
-              </li>
-            </th:block>
-
-            <th:block th:each="number:${#numbers.sequence(paging.getStartPage(), paging.getEndPage())}">
-              <li class="page-item" th:if="${number==paging.getCurrentPage()}" th:classappend="active">
-                <a class="page-link" href="#" th:href="@{incident(page=${number})}" th:text="${number}">1</a>
-              </li>
-              <li class="page-item" th:if="${number!=paging.getCurrentPage()}" th:classappend="${number > paging.getMaxSize() ? 'disabled' : _}">
-                <a class="page-link" href="#" th:href="@{incident(page=${number})}" th:text="${number}">1</a>
-              </li>
-            </th:block>
-
-            <th:block>
-              <li class="page-item" th:classappend="${!paging.isEnableNext() ? 'disabled' : _}">
-                <a class="page-link" href="#" th:href="@{incident(page=${paging.getCurrentPage()}+1)}" aria-label="Next">
-                  <span aria-hidden="true">&gt;</span>
-                </a>
-              </li>
-              <li class="page-item" th:classappend="${!paging.isEnableNext() ? 'disabled' : _}">
-                <a class="page-link" href="#" th:href="@{incident(page=${paging.getMaxSize()})}" aria-label="End">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </th:block>
-
-          </ul>
-        </nav>
-
-      </div>
-    </div>
+    <!--    페이지 번호    -->
+    <div th:replace="~{fragment/paging :: defaultPaging('incident', ${paging})}"></div>
   </div>
 </div>
 </body>

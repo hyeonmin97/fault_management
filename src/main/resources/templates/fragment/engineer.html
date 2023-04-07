@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+  <!-- 소속 엔지니어 테이블 -->
+  <table th:fragment="engineerList(engineerList)" class="table fs-6 align-middle mt-3">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>전화번호</th>
+        <th>입사일</th>
+        <th>퇴사일</th>
+        <th>상태</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="engineer : ${engineerList}">
+        <td><a th:href="|/engineer/${engineer.getId()}/info|" href="#" class="link-info"> <span th:text="${engineer.getId()}">id</span></a></td>
+        <td th:text="${engineer.getName()}">이름</td>
+        <td th:text="${engineer.getAge()}">나이</td>
+        <td th:text="${engineer.getPhone()}">전화번호</td>
+        <td th:text="${#temporals.format(engineer.getJoinDate(), 'yyyy-MM-dd HH:mm')}">입사일</td>
+        <td th:text="${#temporals.format(engineer.getResignationDate(), 'yyyy-MM-dd HH:mm')}">퇴사일</td>
+        <td th:text="${engineer.getEngineerStatus()}">상태</td>
+      </tr>
+    </tbody>
+
+  </table>
+</body>
+</html>
